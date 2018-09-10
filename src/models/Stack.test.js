@@ -19,7 +19,6 @@ test('can retrieve list of stacks', (done) => {
 
   Stack.all().then(stacks => {
     expect(stacks).toHaveLength(1)
-    expect(stacks[0]).toBeInstanceOf(Stack)
     expect(stacks[0].title).toBe('Interview questions')
     done()
   })
@@ -33,8 +32,8 @@ test('can create a stack', (done) => {
       title: 'New stack'
     })
 
-  const stack = new Stack({ title: 'New stack' })
-  stack.save().then(stack => {
+  const stack = { title: 'New stack' }
+  Stack.save(stack).then(stack => {
     expect(stack.id).toBe('bde')
     done()
   })
@@ -64,7 +63,7 @@ test('can update a stack', (done) => {
     })
 
   nock(process.env.REACT_APP_API_DOMAIN)
-    .put('/api/stacks/bde', { title: 'Updated title' })
+    .put('/api/stacks/bde', { id: 'bde', title: 'Updated title' })
     .reply(200, {
       id: 'bde',
       title: 'Updated title'
@@ -72,7 +71,7 @@ test('can update a stack', (done) => {
 
   Stack.get('bde').then(stack => {
     stack.title = 'Updated title'
-    stack.save().then(stack => {
+    Stack.save(stack).then(stack => {
       expect(stack.title).toBe('Updated title')
       done()
     })
@@ -86,8 +85,8 @@ test('can delete a stack', (done) => {
       numDeleted: 1
     })
 
-  const stack = new Stack({ id: 'bde', title: 'Test stack' })
-  stack.delete().then(deleted => {
+  const stack = { id: 'bde', title: 'Test stack' }
+  Stack.delete(stack).then(deleted => {
     expect(deleted).toBe(true)
     done()
   })

@@ -3,62 +3,51 @@ import request from 'superagent'
 let userToken
 const apiDomain = process.env.REACT_APP_API_DOMAIN
 
-class Stack {
-  constructor (properties) {
-    this.id = properties.id
-    this.title = properties.title
-  }
-
-  static setUserToken (token) {
+const Stack = {
+  setUserToken: (token) => {
     userToken = token
-  }
-
-  static all () {
+  },
+  all: () => {
     return request.get(`${apiDomain}/api/stacks`)
       .set('Authorization', `Bearer ${userToken}`)
       .then(res => res.body.stacks)
-      .then(stacksInfo => stacksInfo.map(s => new Stack(s)))
-  }
-
-  static get (id) {
+  },
+  get: (id) => {
     return request.get(`${apiDomain}/api/stacks/${id}`)
       .set('Authorization', `Bearer ${userToken}`)
-      .then(res => new Stack(res.body))
-  }
-
-  save () {
-    if (!this.id) {
-      return this.create()
+      .then(res => res.body)
+  },
+  save: (stack) => {
+    if (!stack.id) {
+      return Stack.create(stack)
     } else {
-      return this.update()
+      return Stack.update(stack)
     }
-  }
-
-  create () {
+  },
+  create: (stack) => {
     return request.post(`${apiDomain}/api/stacks`)
       .set('Authorization', `Bearer ${userToken}`)
-      .send({ title: this.title })
+      .send(stack)
       .then(res => res.body)
-      .then(stackInfo => {
-        Object.assign(this, stackInfo)
-        return this
+      .then(createdStack => {
+        return Object.assign({}, stack, createdStack)
       })
-  }
-
-  update () {
-    return request.put(`${apiDomain}/api/stacks/${this.id}`)
+  },
+  update: (stack) => {
+    return request.put(`${apiDomain}/api/stacks/${stack.id}`)
       .set('Authorization', `Bearer ${userToken}`)
-      .send({ title: this.title })
+      .send(stack)
       .then(res => res.body)
-      .then(stackInfo => {
-        Object.assign(this, stackInfo)
-        return this
+      .then(updatedStack => {
+        return Object.assign({}, stack, updatedStack)
       })
-  }
-
-  delete () {
-    if (!this.id) { return false }
-    return request.delete(`${apiDomain}/api/stacks/${this.id}`)
+  },
+  delete: (stackOrId) => {
+    let stackId = stackOrId
+    if (typeof stackOrId !== 'string') {
+      stackId = stackOrId.id
+    }
+    return request.delete(`${apiDomain}/api/stacks/${stackId}`)
       .set('Authorization', `Bearer ${userToken}`)
       .then(res => {
         if (res.body.numDeleted > 0) {
