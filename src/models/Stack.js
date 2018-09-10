@@ -27,7 +27,7 @@ const Stack = {
   create: (stack) => {
     return request.post(`${apiDomain}/api/stacks`)
       .set('Authorization', `Bearer ${userToken}`)
-      .send(stack)
+      .send({ title: stack.title })
       .then(res => res.body)
       .then(createdStack => {
         return Object.assign({}, stack, createdStack)
@@ -36,7 +36,7 @@ const Stack = {
   update: (stack) => {
     return request.put(`${apiDomain}/api/stacks/${stack.id}`)
       .set('Authorization', `Bearer ${userToken}`)
-      .send(stack)
+      .send({ title: stack.title })
       .then(res => res.body)
       .then(updatedStack => {
         return Object.assign({}, stack, updatedStack)

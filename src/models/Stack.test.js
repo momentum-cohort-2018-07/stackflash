@@ -63,7 +63,7 @@ test('can update a stack', (done) => {
     })
 
   nock(process.env.REACT_APP_API_DOMAIN)
-    .put('/api/stacks/bde', { id: 'bde', title: 'Updated title' })
+    .put('/api/stacks/bde', { title: 'Updated title' })
     .reply(200, {
       id: 'bde',
       title: 'Updated title'
