@@ -1,9 +1,9 @@
 /* globals test, expect */
 
-import Stack from './Stack'
+import data from './data'
 import nock from 'nock'
 
-Stack.setUserToken(process.env.REACT_APP_USER_TOKEN)
+data.setUserToken(process.env.REACT_APP_USER_TOKEN)
 
 test('can retrieve list of stacks', (done) => {
   nock(process.env.REACT_APP_API_DOMAIN)
@@ -17,7 +17,7 @@ test('can retrieve list of stacks', (done) => {
       ]
     })
 
-  Stack.all().then(stacks => {
+  data.getStacks().then(stacks => {
     expect(stacks).toHaveLength(1)
     expect(stacks[0].title).toBe('Interview questions')
     done()
@@ -33,7 +33,7 @@ test('can create a stack', (done) => {
     })
 
   const stack = { title: 'New stack' }
-  Stack.save(stack).then(stack => {
+  data.saveStack(stack).then(stack => {
     expect(stack.id).toBe('bde')
     done()
   })
@@ -47,7 +47,7 @@ test('can get a stack', (done) => {
       title: 'Test stack'
     })
 
-  Stack.get('bde').then(stack => {
+  data.getStack('bde').then(stack => {
     expect(stack.id).toBe('bde')
     expect(stack.title).toBe('Test stack')
     done()
@@ -69,13 +69,15 @@ test('can update a stack', (done) => {
       title: 'Updated title'
     })
 
-  Stack.get('bde').then(stack => {
-    stack.title = 'Updated title'
-    Stack.save(stack).then(stack => {
+  data.getStack('bde')
+    .then(stack => {
+      stack.title = 'Updated title'
+      return data.saveStack(stack)
+    })
+    .then(stack => {
       expect(stack.title).toBe('Updated title')
       done()
     })
-  })
 })
 
 test('can delete a stack', (done) => {
@@ -86,7 +88,7 @@ test('can delete a stack', (done) => {
     })
 
   const stack = { id: 'bde', title: 'Test stack' }
-  Stack.delete(stack).then(deleted => {
+  data.deleteStack(stack).then(deleted => {
     expect(deleted).toBe(true)
     done()
   })

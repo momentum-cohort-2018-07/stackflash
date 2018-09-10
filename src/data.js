@@ -3,28 +3,28 @@ import request from 'superagent'
 let userToken
 const apiDomain = process.env.REACT_APP_API_DOMAIN
 
-const Stack = {
+const data = {
   setUserToken: (token) => {
     userToken = token
   },
-  all: () => {
+  getStacks: () => {
     return request.get(`${apiDomain}/api/stacks`)
       .set('Authorization', `Bearer ${userToken}`)
       .then(res => res.body.stacks)
   },
-  get: (id) => {
+  getStack: (id) => {
     return request.get(`${apiDomain}/api/stacks/${id}`)
       .set('Authorization', `Bearer ${userToken}`)
       .then(res => res.body)
   },
-  save: (stack) => {
+  saveStack: (stack) => {
     if (!stack.id) {
-      return Stack.create(stack)
+      return data.createStack(stack)
     } else {
-      return Stack.update(stack)
+      return data.updateStack(stack)
     }
   },
-  create: (stack) => {
+  createStack: (stack) => {
     return request.post(`${apiDomain}/api/stacks`)
       .set('Authorization', `Bearer ${userToken}`)
       .send({ title: stack.title })
@@ -33,7 +33,7 @@ const Stack = {
         return Object.assign({}, stack, createdStack)
       })
   },
-  update: (stack) => {
+  updateStack: (stack) => {
     return request.put(`${apiDomain}/api/stacks/${stack.id}`)
       .set('Authorization', `Bearer ${userToken}`)
       .send({ title: stack.title })
@@ -42,7 +42,7 @@ const Stack = {
         return Object.assign({}, stack, updatedStack)
       })
   },
-  delete: (stackOrId) => {
+  deleteStack: (stackOrId) => {
     let stackId = stackOrId
     if (typeof stackOrId !== 'string') {
       stackId = stackOrId.id
@@ -59,4 +59,4 @@ const Stack = {
   }
 }
 
-export default Stack
+export default data
