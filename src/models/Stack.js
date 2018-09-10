@@ -1,22 +1,61 @@
 import request from 'superagent'
 
 let userToken
+const apiDomain = process.env.REACT_APP_API_DOMAIN
 
-class Stack {
-  constructor (properties) {
-    this.id = properties.id
-    this.title = properties.title
-  }
-
-  static setUserToken (token) {
+const Stack = {
+  setUserToken: (token) => {
     userToken = token
-  }
-
-  static all () {
-    return request.get(`${process.env.REACT_APP_API_DOMAIN}/api/stacks`)
+  },
+  all: () => {
+    return request.get(`${apiDomain}/api/stacks`)
       .set('Authorization', `Bearer ${userToken}`)
       .then(res => res.body.stacks)
-      .then(stacksInfo => stacksInfo.map(s => new Stack(s)))
+  },
+  get: (id) => {
+    return request.get(`${apiDomain}/api/stacks/${id}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .then(res => res.body)
+  },
+  save: (stack) => {
+    if (!stack.id) {
+      return Stack.create(stack)
+    } else {
+      return Stack.update(stack)
+    }
+  },
+  create: (stack) => {
+    return request.post(`${apiDomain}/api/stacks`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .send({ title: stack.title })
+      .then(res => res.body)
+      .then(createdStack => {
+        return Object.assign({}, stack, createdStack)
+      })
+  },
+  update: (stack) => {
+    return request.put(`${apiDomain}/api/stacks/${stack.id}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .send({ title: stack.title })
+      .then(res => res.body)
+      .then(updatedStack => {
+        return Object.assign({}, stack, updatedStack)
+      })
+  },
+  delete: (stackOrId) => {
+    let stackId = stackOrId
+    if (typeof stackOrId !== 'string') {
+      stackId = stackOrId.id
+    }
+    return request.delete(`${apiDomain}/api/stacks/${stackId}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .then(res => {
+        if (res.body.numDeleted > 0) {
+          return true
+        } else {
+          return false
+        }
+      })
   }
 }
 
