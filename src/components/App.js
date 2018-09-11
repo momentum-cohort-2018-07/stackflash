@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import LoginForm from './LoginForm'
 import { Title } from 'bloomer'
 import FlashCardContainer from './FlashCardContainer'
+import data from '../data'
 
 class App extends Component {
   constructor () {
@@ -13,8 +14,21 @@ class App extends Component {
     this.setCurrentUser = this.setCurrentUser.bind(this)
   }
 
-  setCurrentUser (username) {
-    this.setState({ currentUser: username })
+  componentDidMount () {
+    const username = window.localStorage.getItem('username')
+    const token = window.localStorage.getItem('token')
+    if (username && token) {
+      this.setState({
+        currentUser: { username, token }
+      })
+      data.setUserToken(token)
+    }
+  }
+
+  setCurrentUser (user) {
+    window.localStorage.setItem('username', user.username)
+    window.localStorage.setItem('token', user.token)
+    this.setState({ currentUser: user })
   }
 
   render () {
@@ -35,7 +49,7 @@ class App extends Component {
           <div className='board'>
             <FlashCardContainer>
               {this.state.currentUser
-                ? <div>Logged in as {this.state.currentUser}</div>
+                ? <div>Logged in as {this.state.currentUser.username}</div>
                 : <LoginForm setCurrentUser={this.setCurrentUser} />
               }
             </FlashCardContainer>

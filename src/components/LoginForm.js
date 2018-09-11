@@ -19,7 +19,7 @@ class LoginForm extends React.Component {
     const { username, password } = this.state
     console.log('submitting login')
     data.login(username, password)
-      .then(() => this.props.setCurrentUser(username))
+      .then(user => this.props.setCurrentUser(user))
       .catch(err => {
         this.setState({
           errorMsg: err.message

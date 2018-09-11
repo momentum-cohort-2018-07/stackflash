@@ -36,12 +36,8 @@ const data = {
       .send({ username, password })
       .then(res => res.body.token)
       .then(token => {
-        if (token) {
-          data.setUserToken(token)
-          return true
-        } else {
-          return false
-        }
+        data.setUserToken(token)
+        return { username, token }
       })
       .catch(err => {
         if (err.response.statusCode === 422) {
