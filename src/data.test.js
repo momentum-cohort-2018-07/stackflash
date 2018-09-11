@@ -13,7 +13,7 @@ test('can login', (done) => {
     })
 
   data.login('user', 'pass').then(success => {
-    expect(success).toBe(true)
+    expect(success).toEqual({ 'token': 'abc', 'username': 'user' })
     expect(data.getUserToken()).toBe('abc')
     done()
   })
@@ -28,7 +28,7 @@ test('can register', (done) => {
     })
 
   data.register('user', 'pass').then(success => {
-    expect(success).toBe(true)
+    expect(success).toEqual({ 'token': 'abc', 'username': 'user' })
     expect(data.getUserToken()).toBe('abc')
     done()
   })
