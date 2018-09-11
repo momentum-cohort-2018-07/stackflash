@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import LoginForm from './LoginForm'
-import { Title } from 'bloomer'
+import { Title, Button } from 'bloomer'
 import FlashCardContainer from './FlashCardContainer'
 import data from '../data'
 
@@ -31,11 +31,24 @@ class App extends Component {
     this.setState({ currentUser: user })
   }
 
+  logout () {
+    window.localStorage.clear()
+    this.setState({
+      currentUser: null
+    })
+  }
+
   render () {
     return (
       <div className='App'>
         <section className='sidebar'>
           <Title>StackFlash</Title>
+          {this.state.currentUser &&
+          <div>
+            <p>Hello, {this.state.currentUser.username}</p>
+            <Button onClick={() => this.logout()}>Sign Out</Button>
+          </div>
+          }
           <div className='attribution'>
             <p>
               Created by Cohort 2 at <a href='https://www.momentumlearn.com/'>Momentum</a>.
