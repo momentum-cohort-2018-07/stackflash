@@ -35,3 +35,50 @@ body {
   margin: 2rem auto;
   width: 75%;
 }
+
+.miniCard {
+  border: 1px solid gray;
+  border-radius: 2px;
+  height: 300px;
+  padding: 20px;
+  text-align: center;    
+}
+
+.container {
+  margin: 20px;
+}
+
+.stackTitle, .editTitleButtonDiv, .deleteFlashCardDiv, .edit-runDiv {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.stackTitle {
+  max-width: 60%;
+}
+
+.editTitleButton, .deleteFlashCardButton, .editViewButton, .runViewButton {
+  border-radius: 2px;
+  font-size: 2rem;
+}
+
+.editViewButton, .runViewButton {
+  float: right;
+  font-size: 1.25rem;  
+}
+
+.editTitleButton, .deleteFlashCardButton {
+  margin: 10px 10px;
+}
+
+.cardDeleteButton{
+  float: right;
+  border: none;
+  color: white;
+}
+
+miniCard:hover {
+  float: right;
+  color: red;
+  font-size: 1.25rem;
+}

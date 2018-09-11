@@ -3,6 +3,7 @@ import LoginForm from './LoginForm'
 import { Title } from 'bloomer'
 import FlashCardContainer from './FlashCardContainer'
 import data from '../data'
+// import StackEditView from './StackEditView.js'
 
 class App extends Component {
   constructor () {
