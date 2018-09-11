@@ -43,6 +43,15 @@ const data = {
           return false
         }
       })
+      .catch(err => {
+        if (err.response.statusCode === 422) {
+          throw new Error('You must provide a username and password.')
+        } else if (err.response.statusCode === 401) {
+          throw new Error('There is no user with that username and password.')
+        } else {
+          throw new Error('There was a problem communicating with the server.')
+        }
+      })
   },
   register: (username, password) => {
     return request.post(`${apiDomain}/api/register`)
