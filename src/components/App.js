@@ -45,7 +45,7 @@ class App extends Component {
           <Title>StackFlash</Title>
           {this.state.currentUser &&
           <div>
-            <p>Hello, {this.state.currentUser.username}</p>
+            <p>Hello, {this.state.currentUser.username}!</p>
             <Button onClick={() => this.logout()}>Sign Out</Button>
           </div>
           }
