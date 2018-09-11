@@ -3,6 +3,7 @@ import LoginForm from './LoginForm'
 import { Title } from 'bloomer'
 import FlashCardContainer from './FlashCardContainer'
 import data from '../data'
+import StackTitle from './StackTitle'
 
 class App extends Component {
   constructor () {
