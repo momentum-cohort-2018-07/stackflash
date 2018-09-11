@@ -19,7 +19,7 @@ class RegistrationForm extends React.Component {
     event.preventDefault()
     const { username, password } = this.state
     data.register(username, password)
-      .then(user => this.props.setNewUser(user))
+      .then(user => this.props.setCurrentUser(user))
       .catch(err => {
         this.setState({
           errorMsg: err.message

@@ -58,6 +58,7 @@ const data = {
         return user
       })
       .catch(err => {
+        console.log(err)
         if (err.response.statusCode === 422) {
           const errors = err.response.body.errors
           if (errors[0].msg === 'cannot be empty') {
@@ -68,11 +69,6 @@ const data = {
             throw new Error(`An unknown problem occurred: ${errors}`)
           }
         } else {
-          throw new Error('There was a problem communicating with the server.')
-        }
-      })
-      .catch(err => {
-        if (err.reponse.statusCode === 503) {
           throw new Error('There was a problem communicating with the server.')
         }
       })
