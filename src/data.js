@@ -36,11 +36,16 @@ const data = {
       .send({ username, password })
       .then(res => res.body.token)
       .then(token => {
-        if (token) {
-          data.setUserToken(token)
-          return true
+        data.setUserToken(token)
+        return { username, token }
+      })
+      .catch(err => {
+        if (err.response.statusCode === 422) {
+          throw new Error('You must provide a username and password.')
+        } else if (err.response.statusCode === 401) {
+          throw new Error('There is no user with that username and password.')
         } else {
-          return false
+          throw new Error('There was a problem communicating with the server.')
         }
       })
   },

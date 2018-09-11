@@ -1,11 +1,41 @@
 import React, { Component } from 'react'
+import LoginForm from './LoginForm'
+import { Title } from 'bloomer'
+import FlashCardContainer from './FlashCardContainer'
+import data from '../data'
 
 class App extends Component {
+  constructor () {
+    super()
+    this.state = {
+      currentUser: null
+    }
+
+    this.setCurrentUser = this.setCurrentUser.bind(this)
+  }
+
+  componentDidMount () {
+    const username = window.localStorage.getItem('username')
+    const token = window.localStorage.getItem('token')
+    if (username && token) {
+      this.setState({
+        currentUser: { username, token }
+      })
+      data.setUserToken(token)
+    }
+  }
+
+  setCurrentUser (user) {
+    window.localStorage.setItem('username', user.username)
+    window.localStorage.setItem('token', user.token)
+    this.setState({ currentUser: user })
+  }
+
   render () {
     return (
       <div className='App'>
         <section className='sidebar'>
-          <h1>StackFlash</h1>
+          <Title>StackFlash</Title>
           <div className='attribution'>
             <p>
               Created by Cohort 2 at <a href='https://www.momentumlearn.com/'>Momentum</a>.
@@ -16,7 +46,14 @@ class App extends Component {
           </div>
         </section>
         <main className='main'>
-          <div className='board'>&nbsp;</div>
+          <div className='board'>
+            <FlashCardContainer>
+              {this.state.currentUser
+                ? <div>Logged in as {this.state.currentUser.username}</div>
+                : <LoginForm setCurrentUser={this.setCurrentUser} />
+              }
+            </FlashCardContainer>
+          </div>
         </main>
       </div>
     )

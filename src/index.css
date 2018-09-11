@@ -26,3 +26,12 @@ body {
   height: 90vh;
   width: 100%;
 }
+
+.FlashCardContainer {
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.75);
+  padding: 1rem 2rem;
+  margin: 2rem auto;
+  width: 75%;
+}
