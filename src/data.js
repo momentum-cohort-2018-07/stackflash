@@ -61,6 +61,11 @@ const data = {
           return false
         }
       })
+      .catch(err => {
+        if (err.reponse.statusCode === 503) {
+          throw new Error('There was a problem communicating with the server.')
+        }
+      })
   },
   getStacks: () => {
     return request.get(`${apiDomain}/api/stacks`)

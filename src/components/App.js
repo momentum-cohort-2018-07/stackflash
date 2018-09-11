@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import LoginForm from './LoginForm'
 import { Title } from 'bloomer'
 import FlashCardContainer from './FlashCardContainer'
+import RegistrationForm from './RegistrationForm'
+import LoggedOut from './LoggedOut'
 import data from '../data'
 
 class App extends Component {
@@ -50,7 +52,8 @@ class App extends Component {
             <FlashCardContainer>
               {this.state.currentUser
                 ? <div>Logged in as {this.state.currentUser.username}</div>
-                : <LoginForm setCurrentUser={this.setCurrentUser} />
+                : <LoggedOut
+                  setIsRegistering={() => this.setIsRegistering()} setCurrentUser={(user) => this.setCurrentUser(user)} />
               }
             </FlashCardContainer>
           </div>
