@@ -7,6 +7,22 @@ const data = {
   setUserToken: (token) => {
     userToken = token
   },
+  getUserToken: () => {
+    return userToken
+  },
+  login: (username, password) => {
+    return request.post(`${apiDomain}/api/login`)
+      .send({ username, password })
+      .then(res => res.body.token)
+      .then(token => {
+        if (token) {
+          data.setUserToken(token)
+          return true
+        } else {
+          return false
+        }
+      })
+  },
   getStacks: () => {
     return request.get(`${apiDomain}/api/stacks`)
       .set('Authorization', `Bearer ${userToken}`)

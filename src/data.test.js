@@ -5,6 +5,20 @@ import nock from 'nock'
 
 data.setUserToken(process.env.REACT_APP_USER_TOKEN)
 
+test('can login', (done) => {
+  nock(process.env.REACT_APP_API_DOMAIN)
+    .post('/api/login', { username: 'user', password: 'pass' })
+    .reply(200, {
+      token: 'abc'
+    })
+
+  data.login('user', 'pass').then(success => {
+    expect(success).toBe(true)
+    expect(data.getUserToken()).toBe('abc')
+    done()
+  })
+})
+
 test('can retrieve list of stacks', (done) => {
   nock(process.env.REACT_APP_API_DOMAIN)
     .get('/api/stacks')
