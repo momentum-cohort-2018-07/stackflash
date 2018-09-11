@@ -23,6 +23,19 @@ const data = {
         }
       })
   },
+  register: (username, password) => {
+    return request.post(`${apiDomain}/api/register`)
+      .send({ username, password })
+      .then(res => res.body.token)
+      .then(token => {
+        if (token) {
+          data.setUserToken(token)
+          return true
+        } else {
+          return false
+        }
+      })
+  },
   getStacks: () => {
     return request.get(`${apiDomain}/api/stacks`)
       .set('Authorization', `Bearer ${userToken}`)

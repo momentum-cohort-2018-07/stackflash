@@ -19,6 +19,21 @@ test('can login', (done) => {
   })
 })
 
+test('can register', (done) => {
+  nock(process.env.REACT_APP_API_DOMAIN)
+    .post('/api/register', { username: 'user', password: 'pass' })
+    .reply(200, {
+      username: 'user',
+      token: 'abc'
+    })
+
+  data.register('user', 'pass').then(success => {
+    expect(success).toBe(true)
+    expect(data.getUserToken()).toBe('abc')
+    done()
+  })
+})
+
 test('can retrieve list of stacks', (done) => {
   nock(process.env.REACT_APP_API_DOMAIN)
     .get('/api/stacks')
