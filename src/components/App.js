@@ -24,6 +24,9 @@ class App extends Component {
         currentUser: { username, token }
       })
       data.setUserToken(token)
+      data.getStacks().then(stacks => this.setState({
+        stacks
+      }))
     }
   }
 
@@ -34,6 +37,7 @@ class App extends Component {
   }
 
   render () {
+    console.log(this.state.stacks)
     return (
       <div className='App'>
         <section className='sidebar'>
@@ -53,8 +57,11 @@ class App extends Component {
               {this.state.currentUser
                 ? <div>
                   <div>Logged in as {this.state.currentUser.username}</div>
-                  {/* {this.state.stacks.map((stack) => <StacksView key={stack.id} stack={stack} />)} */}
-                  <StacksView />
+                  {this.state.stacks.map((stack) => <StacksView key={stack.id} stack={stack} />)}
+                  <div className='stackContainer'>
+                    <div className='addStack'>+</div>
+                    <div className='numberOfCards'><p>Add a New Deck</p></div>
+                  </div>
                 </div>
                 : <LoginForm setCurrentUser={this.setCurrentUser} />
               }

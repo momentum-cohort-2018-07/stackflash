@@ -1,5 +1,4 @@
 import React from 'react'
-// import data from './data'
 
 class StacksView extends React.Component {
   render () {
@@ -7,12 +6,8 @@ class StacksView extends React.Component {
       <div className='stackView'>
         <div className='stackContainer'>
           <div className='stackImage' />
-          <div className='stackTitle'><h4>Placeholder "stack Name"</h4></div>
-          <div className='numberOfCards'><p>(x) cards</p></div>
-        </div>
-        <div className='stackContainer'>
-          <div className='addStack'>+</div>
-          <div className='numberOfCards'><p>Add a New Deck</p></div>
+          <div className='stackTitle'><h4>{ this.props.stack.title } </h4></div>
+          <div className='numberOfCards'><p>{ this.props.stack.cardCount } cards</p></div>
         </div>
       </div>
     )
