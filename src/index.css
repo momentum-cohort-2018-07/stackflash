@@ -37,15 +37,20 @@ body {
 }
 
 .miniCard {
+  display: inline-block;
   border: 1px solid gray;
   border-radius: 2px;
-  height: 300px;
-  padding: 20px;
+  height: 125px;
+  max-width: 30%;
+  padding: 15px;
+  margin-top: 10px;
   text-align: center;    
+  font-size: .5rem;
+  line-height: .75rem;
 }
 
 .container {
-  margin: 20px;
+  margin: 15px;
 }
 
 .stackTitle, .editTitleButtonDiv, .deleteFlashCardDiv, .edit-runDiv {
@@ -53,32 +58,49 @@ body {
   vertical-align: top;
 }
 
+h1.title {
+  font-size: 1.25rem;
+  display: inline-block;
+}
+
 .stackTitle {
-  max-width: 60%;
+  width: 80%;
+  font-size: 1rem;
+  display: inline-block;
 }
 
-.editTitleButton, .deleteFlashCardButton, .editViewButton, .runViewButton {
+.editTitleButton, .cancelTitleEditButton, .editModeButton, .runModeButton {
   border-radius: 2px;
-  font-size: 2rem;
 }
 
-.editViewButton, .runViewButton {
-  float: right;
-  font-size: 1.25rem;  
+.editModeButton, .runModeButton {
+  font-size: .75rem;  
 }
 
-.editTitleButton, .deleteFlashCardButton {
-  margin: 10px 10px;
+.editTitleButton, .cancelTitleEditButton {
+  border: none;
+  display: inline-block;
+  font-size: 1rem;
 }
 
 .cardDeleteButton{
   float: right;
   border: none;
-  color: white;
+  color:lightgray;
+  font-size: 1rem;
 }
 
-miniCard:hover {
-  float: right;
+.cardDeleteButton:hover {
   color: red;
-  font-size: 1.25rem;
+  font-size: 1rem;
+}
+
+.addCardButton {
+  display: inline-block;
+  margin: 20px auto;
+  width: 30%;
+  border: 1px dotted lightgray;
+  border-radius: 2px;
+  font-size: .75rem;
+  height: 125px;
 }

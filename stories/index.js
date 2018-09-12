@@ -16,9 +16,9 @@ storiesOf('StackEditView', module)
     <StackEditView stack={
       {
         id: 'a',
-        title: 'Interview questions',
+        title: 'Longer Title for Flashcard Stack',
         cards: [
-          {id: 'a', front: 'What is the airspeed of a laden swallow?', back: 'African or European'}
+          {id: 'a', front: 'What is the airspeed of a laden swallow?', back: 'African or European'} 
         ]
       }
     } />

@@ -1,14 +1,7 @@
 import React, { Component } from 'react'
 import { Title } from 'bloomer'
-// import FlashCardContainer from './FlashCardContainer'
-// import data from '../data'
-// import { Stack } from 'immutable'
 
 class FlashCardMini extends Component {
-  // constructor () {
-  //   super(props)
-  // }
-
   render () {
     return (
       <div className='FlashCardMini'>
@@ -24,26 +17,23 @@ class FlashCardMini extends Component {
 }
 
 class StackEditView extends Component {
-  // renderSeeAllStacksEdit () {
-  //   return (
-  //     <button className='sidebarNavButton showAllStacks'>See all stacks</button>
-  //   )
-  // }
-
   render () {
     const stack = this.props.stack
     return (
       <div className='board'>
         <div className='container'>
           <div className='stackNav'>
-            <div className='stackTitle'><Title>{stack.title}</Title></div>
-            <div className='editTitleButtonDiv'><button className='editTitleButton'>&#x270E;</button></div>
-            <div className='deleteFlashCardDiv'><button className='deleteFlashCardButton'>&#10006;</button></div>
-            <div className='edit-runDiv'><button className='editViewButton'>Edit</button><button className='runViewButton'>Run</button></div>
+            <div className='stackTitle'><Title>{stack.title}</Title>
+              <button className='editTitleButton'>&#x270E;</button>
+              <button className='cancelTitleEditButton'>&#10006;</button></div>
+            <div className='edit-runDiv'><button className='editModeButton'>Edit</button><button className='runModeButton'>Run</button></div>
           </div>
           <div className='FlashCardMiniDiv columns'>
             <div className='column is-one-third'>
               {stack.cards.map((card) => <FlashCardMini key={card.id} card={card} />)}
+            </div>
+            <div className='column is-one-third addCardButtonDiv'>
+              <button className='column is-one-third addCardButton'>+</button>
             </div>
           </div>
         </div>
