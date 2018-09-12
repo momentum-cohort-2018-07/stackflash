@@ -1,6 +1,8 @@
 import React from 'react'
 import { Field, Label, Control, Input, Button, Notification } from 'bloomer'
+import { Link, route } from 'buttermilk'
 import data from '../data'
+import FlashCardContainer from './FlashCardContainer'
 
 class LoginForm extends React.Component {
   constructor (props) {
@@ -27,34 +29,41 @@ class LoginForm extends React.Component {
   }
 
   render () {
-    // let { registrationView } = this.props
     const { username, password, errorMsg } = this.state
 
     return (
-      <div className='LoginForm'>
+      <FlashCardContainer>
+        <div className='is-size-4 has-text-centered'>
+          <Link href='/login'>Log In</Link>
+          &nbsp;|&nbsp;
+          <Link href='/register'>Register</Link>
+        </div>
 
-        {errorMsg &&
+        <div className='LoginForm'>
+
+          {errorMsg &&
           <Notification isColor='danger'>
             {errorMsg}
           </Notification>}
-        <form onSubmit={this.handleSubmit}>
-          <Field>
-            <Label>Username</Label>
-            <Control>
-              <Input type='text' value={username}
-                onChange={(e) => this.setState({ username: e.target.value })} />
-            </Control>
-          </Field>
-          <Field>
-            <Label>Password</Label>
-            <Control>
-              <Input type='password' value={password}
-                onChange={(e) => this.setState({ password: e.target.value })} />
-            </Control>
-          </Field>
-          <Button type='submit'>Login</Button>
-        </form>
-      </div>
+          <form onSubmit={this.handleSubmit}>
+            <Field>
+              <Label>Username</Label>
+              <Control>
+                <Input type='text' value={username}
+                  onChange={(e) => this.setState({ username: e.target.value })} />
+              </Control>
+            </Field>
+            <Field>
+              <Label>Password</Label>
+              <Control>
+                <Input type='password' value={password}
+                  onChange={(e) => this.setState({ password: e.target.value })} />
+              </Control>
+            </Field>
+            <Button type='submit'>Login</Button>
+          </form>
+        </div>
+      </FlashCardContainer>
     )
   }
 }

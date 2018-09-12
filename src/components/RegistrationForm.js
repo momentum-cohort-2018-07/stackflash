@@ -1,5 +1,7 @@
 import React from 'react'
-import { Form, Field, Button, Control, Notification, Input, Label } from 'bloomer'
+import { Field, Button, Control, Notification, Input, Label } from 'bloomer'
+import { Link } from 'buttermilk'
+import FlashCardContainer from './FlashCardContainer'
 import data from '../data'
 
 class RegistrationForm extends React.Component {
@@ -35,35 +37,44 @@ class RegistrationForm extends React.Component {
     const { username, password, passwordConfirmation, errorMsg } = this.state
 
     return (
-      <div className='RegistrationForm'>
-        {errorMsg &&
+      <FlashCardContainer>
+
+        <div className='is-size-4 has-text-centered'>
+          <Link href='/login'>Log In</Link>
+          &nbsp;|&nbsp;
+          <Link href='/register'>Register</Link>
+        </div>
+
+        <div className='RegistrationForm'>
+          {errorMsg &&
           <Notification isColor='danger'>
             {errorMsg}
           </Notification>
-        }
-        <form onSubmit={this.handleSubmit}>
-          <Field>
-            <Label>Username</Label>
-            <Control>
-              <Input type='text' value={username} onChange={(e) => this.setState({ username: e.target.value })} />
-            </Control>
-          </Field>
-          <Field>
-            <Label>Password</Label>
-            <Control>
-              <Input type='password' value={password} onChange={(e) => this.setState({ password: e.target.value })} />
-            </Control>
-          </Field>
-          <Field>
-            <Label>Confirm password</Label>
-            <Control>
-              <Input type='password' value={passwordConfirmation} onChange={(e) => this.setState({ passwordConfirmation: e.target.value })} />
-            </Control>
-          </Field>
-          <Button type='submit'>Register</Button>
+          }
+          <form onSubmit={this.handleSubmit}>
+            <Field>
+              <Label>Username</Label>
+              <Control>
+                <Input type='text' value={username} onChange={(e) => this.setState({ username: e.target.value })} />
+              </Control>
+            </Field>
+            <Field>
+              <Label>Password</Label>
+              <Control>
+                <Input type='password' value={password} onChange={(e) => this.setState({ password: e.target.value })} />
+              </Control>
+            </Field>
+            <Field>
+              <Label>Confirm password</Label>
+              <Control>
+                <Input type='password' value={passwordConfirmation} onChange={(e) => this.setState({ passwordConfirmation: e.target.value })} />
+              </Control>
+            </Field>
+            <Button type='submit'>Register</Button>
 
-        </form>
-      </div>
+          </form>
+        </div>
+      </FlashCardContainer>
     )
   }
 }
