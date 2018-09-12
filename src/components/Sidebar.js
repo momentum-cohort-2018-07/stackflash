@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Title, Button } from 'bloomer'
+import { route } from 'buttermilk'
 
 class Sidebar extends React.Component {
   render () {
     const { currentUser, onLogout } = this.props
     return (
       <section className='sidebar'>
-        <Title>StackFlash</Title>
+        <Title style={{ cursor: 'pointer' }} onClick={() => route('/')}>StackFlash</Title>
         {currentUser &&
         <div>
           <p>Hello, {currentUser.username}!</p>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, Button, Control, Notification, Input, Label } from 'bloomer'
 import { Link } from 'buttermilk'
-import FlashCardContainer from './FlashCardContainer'
+import BigFlashCard from './BigFlashCard'
 import data from '../data'
 
 class RegistrationForm extends React.Component {
@@ -37,7 +37,7 @@ class RegistrationForm extends React.Component {
     const { username, password, passwordConfirmation, errorMsg } = this.state
 
     return (
-      <FlashCardContainer>
+      <BigFlashCard>
 
         <div className='is-size-4 has-text-centered'>
           <Link href='/login'>Log In</Link>
@@ -74,7 +74,7 @@ class RegistrationForm extends React.Component {
 
           </form>
         </div>
-      </FlashCardContainer>
+      </BigFlashCard>
     )
   }
 }

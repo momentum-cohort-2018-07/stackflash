@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, Label, Control, Input, Button, Notification } from 'bloomer'
 import { Link } from 'buttermilk'
 import data from '../data'
-import FlashCardContainer from './FlashCardContainer'
+import BigFlashCard from './BigFlashCard'
 
 class LoginForm extends React.Component {
   constructor (props) {
@@ -32,7 +32,7 @@ class LoginForm extends React.Component {
     const { username, password, errorMsg } = this.state
 
     return (
-      <FlashCardContainer>
+      <BigFlashCard>
         <div className='is-size-4 has-text-centered'>
           <Link href='/login'>Log In</Link>
           &nbsp;|&nbsp;
@@ -63,7 +63,7 @@ class LoginForm extends React.Component {
             <Button type='submit'>Login</Button>
           </form>
         </div>
-      </FlashCardContainer>
+      </BigFlashCard>
     )
   }
 }
