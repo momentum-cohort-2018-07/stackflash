@@ -8,9 +8,14 @@ class Stacks extends React.Component {
       return (
         <div class='Stacks'>
           {this.props.stacks.map((stack) => <Stack key={stack.id} stack={stack} />)}
-          <div className='stackContainer'>
-            <div className='addStack'>+</div>
-            <div className='numberOfCards'><p>Add a New Deck</p></div>
+          <div className='Stack'>
+            <div className='Stack__fg'>
+              <div className='Stack__content'>
+                <div className='Stack__addStack'>+</div>
+                <div>Add a new stack</div>
+              </div>
+            </div>
+            <div className='Stack__bg'>&nbsp;</div>
           </div>
         </div>
       )
