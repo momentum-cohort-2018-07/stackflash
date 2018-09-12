@@ -55,7 +55,6 @@ class App extends Component {
             <FlashCardContainer>
               {this.state.currentUser
                 ? <div>
-                  <div>Logged in as {this.state.currentUser.username}</div>
                   {this.state.stacks.map((stack) => <StacksView key={stack.id} stack={stack} />)}
                   <div className='stackContainer'>
                     <div className='addStack'>+</div>
