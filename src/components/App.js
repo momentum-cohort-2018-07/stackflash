@@ -37,7 +37,6 @@ class App extends Component {
   }
 
   render () {
-    console.log(this.state.stacks)
     return (
       <div className='App'>
         <section className='sidebar'>
