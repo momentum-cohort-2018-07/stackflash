@@ -36,7 +36,7 @@ const data = {
       .send({ username, password })
       .then(res => res.body.token)
       .then(token => {
-        data.setUserToken(token)  
+        data.setUserToken(token)
         return { username, token }
       })
       .catch(err => {

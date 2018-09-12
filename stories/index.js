@@ -18,7 +18,10 @@ storiesOf('StackEditView', module)
         id: 'a',
         title: 'Longer Title for Flashcard Stack',
         cards: [
-          {id: 'a', front: 'What is the airspeed of a laden swallow?', back: 'African or European'} 
+          { id: 'a', front: 'What is the airspeed of a laden swallow?', back: 'African or European' },
+          { id: 'b', front: 'What is React Storybook used for?', back: 'ssss' },
+          { id: 'b', front: 'What is React Storybook used for?', back: 'ssss' },
+          { id: 'b', front: 'What is React Storybook used for?', back: 'ssss' }
         ]
       }
     } />
