@@ -16,7 +16,7 @@ class FlashCardMini extends Component {
   }
 }
 
-class StackEditView extends Component {
+class StackPage extends Component {
   render () {
     const stack = this.props.stack
     return (
@@ -30,7 +30,7 @@ class StackEditView extends Component {
           </div>
           <div className='FlashCardMiniDiv columns'>
             <div className='column is-one-third'>
-              {stack.cards.map((card) => <FlashCardMini key={card.id} card={card} />)}
+              {stack.cards && stack.cards.map((card) => <FlashCardMini key={card.id} card={card} />)}
             </div>
             <div className='column is-one-third addCardButtonDiv'>
               <button className='column is-one-third addCardButton'>+</button>
@@ -42,4 +42,4 @@ class StackEditView extends Component {
   }
 }
 
-export default StackEditView
+export default StackPage

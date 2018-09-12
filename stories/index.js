@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import LoginForm from '../src/components/LoginForm'
 import StackTitle from '../src/components/StackTitle'
-import StackEditView from '../src/components/StackEditView'
+import StackPage from '../src/components/StackPage'
 
 import 'bulma/css/bulma.css'
 import '../src/index.css'
@@ -19,9 +19,9 @@ storiesOf('StackTitle', module)
       onClick={action('clicked')}>Edit</StackTitle>
   ))
 
-storiesOf('StackEditView', module)
+storiesOf('StackPage', module)
   .add('default', () => (
-    <StackEditView stack={
+    <StackPage stack={
       {
         id: 'a',
         title: 'Longer Title for Flashcard Stack',

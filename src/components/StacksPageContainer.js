@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import data from '../data'
-import Stacks from './Stacks'
+import StacksPage from './StacksPage'
 
-class StacksContainer extends React.Component {
+class StacksPageContainer extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -33,16 +33,16 @@ class StacksContainer extends React.Component {
 
   render () {
     return (
-      <Stacks stacks={this.state.stacks} />
+      <StacksPage stacks={this.state.stacks} />
     )
   }
 }
 
-StacksContainer.propTypes = {
+StacksPageContainer.propTypes = {
   currentUser: PropTypes.shape({
     username: PropTypes.string,
     token: PropTypes.string
   })
 }
 
-export default StacksContainer
+export default StacksPageContainer

@@ -5,7 +5,8 @@ import Sidebar from './Sidebar'
 import data from '../data'
 import RegistrationForm from './RegistrationForm'
 import LoginForm from './LoginForm'
-import StacksContainer from './StacksContainer'
+import StacksPage from './StacksPageContainer'
+import StackPageContainer from './StackPageContainer'
 
 class App extends Component {
   constructor () {
@@ -64,9 +65,13 @@ class App extends Component {
                   render: () => <LoginForm setCurrentUser={this.setCurrentUser} />
                 },
                 {
+                  path: '/stacks/:id',
+                  render: (routing) => <StackPageContainer id={routing.params.id} />
+                },
+                {
                   path: '*',
                   render: () => (
-                    <StacksContainer currentUser={this.state.currentUser} />
+                    <StacksPage currentUser={this.state.currentUser} />
                   )
                 }
               ]} />
