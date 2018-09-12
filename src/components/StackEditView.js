@@ -21,7 +21,7 @@ class StackEditView extends Component {
     const stack = this.props.stack
     return (
       <div className='board'>
-        <div className='container'>
+        <div style={{ margin: '15px' }}>
           <div className='stackNav'>
             <div className='stackTitle'><Title>{stack.title}</Title>
               <button className='editTitleButton'>&#x270E;</button>
