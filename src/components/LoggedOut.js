@@ -38,4 +38,8 @@ class LoggedOut extends React.Component {
   }
 }
 
+LoggedOut.propTypes = {
+  setCurrentUser: PropTypes.func.isRequired
+}
+
 export default LoggedOut
