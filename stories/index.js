@@ -13,7 +13,6 @@ storiesOf('LoginForm', module)
     <LoginForm setCurrentUser={action('setCurrentUser')} />
   ))
 
-
 storiesOf('StackTitle', module)
   .add('default', () => (
     <StackTitle title='title'

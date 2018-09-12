@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form, Field, Button, Control, Notification, Input, Label} from 'bloomer'
+import { Form, Field, Button, Control, Notification, Input, Label } from 'bloomer'
 import data from '../data'
 
 class RegistrationForm extends React.Component {
@@ -17,18 +17,22 @@ class RegistrationForm extends React.Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    const { username, password } = this.state
-    data.register(username, password)
-      .then(user => this.props.setCurrentUser(user))
-      .catch(err => {
-        this.setState({
-          errorMsg: err.message
+    const { username, password, passwordConfirmation } = this.state
+    if (passwordConfirmation === password) {
+      data.register(username, password)
+        .then(user => this.props.setCurrentUser(user))
+        .catch(err => {
+          this.setState({
+            errorMsg: err.message
+          })
         })
-      })
+    } else {
+      this.setState({ errorMsg: 'Your password and confirmation must match.' })
+    }
   }
 
   render () {
-    const { username, password, errorMsg } = this.state
+    const { username, password, passwordConfirmation, errorMsg } = this.state
 
     return (
       <div className='RegistrationForm'>
@@ -39,24 +43,25 @@ class RegistrationForm extends React.Component {
         }
         <form onSubmit={this.handleSubmit}>
           <Field>
-            <Label>Username:</Label>
+            <Label>Username</Label>
             <Control>
-              <Input type='text' value={username} placeholder='Username' onChange={(e) => this.setState({ username: e.target.value })} />
+              <Input type='text' value={username} onChange={(e) => this.setState({ username: e.target.value })} />
             </Control>
           </Field>
           <Field>
-            <Label>Password:</Label>
+            <Label>Password</Label>
             <Control>
-              <Input type='text' value={password} placeholder='Create password' onChange={(e) => this.setState({ password: e.target.value })} />
+              <Input type='password' value={password} onChange={(e) => this.setState({ password: e.target.value })} />
             </Control>
           </Field>
           <Field>
-            <Label>Confirm password:</Label>
+            <Label>Confirm password</Label>
             <Control>
-              <Input type='text'placeholder='Confirm password' />
+              <Input type='password' value={passwordConfirmation} onChange={(e) => this.setState({ passwordConfirmation: e.target.value })} />
             </Control>
-            <Button type='submit'>Register</Button>
           </Field>
+          <Button type='submit'>Register</Button>
+
         </form>
       </div>
     )
