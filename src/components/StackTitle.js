@@ -24,14 +24,14 @@ class StackTitle extends Component {
     this.setState({isEditing: true})
   }
 
-  // if isEditing False,
-
   render () {
     return (
-      <input type='text' className='title'
-        onChange={event => this.updateTitle(event.target.value)}
-        value={this.state.title} />
-
+      <div>
+        <input type='text' className='title'
+          onChange={event => this.updateTitle(event.target.value)}
+          value={this.state.title} />
+        <button>Save</button>
+      </div>
     )
   }
 }
