@@ -32,6 +32,7 @@ class App extends Component {
   }
 
   logout () {
+    data.setUserToken(null)
     window.localStorage.clear()
     this.setState({
       currentUser: null
