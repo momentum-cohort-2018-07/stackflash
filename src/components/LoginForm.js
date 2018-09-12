@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, Label, Control, Input, Button, Notification } from 'bloomer'
-import { Link, route } from 'buttermilk'
+import { Link } from 'buttermilk'
 import data from '../data'
 import FlashCardContainer from './FlashCardContainer'
 
