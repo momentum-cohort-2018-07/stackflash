@@ -3,12 +3,14 @@ import LoginForm from './LoginForm'
 import { Title, Button } from 'bloomer'
 import FlashCardContainer from './FlashCardContainer'
 import data from '../data'
+import StacksView from './StacksView'
 
 class App extends Component {
   constructor () {
     super()
     this.state = {
-      currentUser: null
+      currentUser: null,
+      stacks: []
     }
 
     this.setCurrentUser = this.setCurrentUser.bind(this)
@@ -22,6 +24,9 @@ class App extends Component {
         currentUser: { username, token }
       })
       data.setUserToken(token)
+      data.getStacks().then(stacks => this.setState({
+        stacks
+      }))
     }
   }
 
@@ -63,7 +68,13 @@ class App extends Component {
           <div className='board'>
             <FlashCardContainer>
               {this.state.currentUser
-                ? <div>Logged in as {this.state.currentUser.username}</div>
+                ? <div>
+                  {this.state.stacks.map((stack) => <StacksView key={stack.id} stack={stack} />)}
+                  <div className='stackContainer'>
+                    <div className='addStack'>+</div>
+                    <div className='numberOfCards'><p>Add a New Deck</p></div>
+                  </div>
+                </div>
                 : <LoginForm setCurrentUser={this.setCurrentUser} />
               }
             </FlashCardContainer>
