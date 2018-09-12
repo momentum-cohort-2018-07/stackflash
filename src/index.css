@@ -61,11 +61,6 @@ a[data-active] {
   vertical-align: top;
 }
 
-h1.title {
-  font-size: 1.25rem;
-  display: inline-block;
-}
-
 .stackTitle {
   width: 80%;
   font-size: 1rem;
