@@ -1892,6 +1892,12 @@ bulma@^0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.1.tgz#73c2e3b2930c90cc272029cbd19918b493fca486"
 
+buttermilk@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/buttermilk/-/buttermilk-1.1.2.tgz#e704ada0d0384570dfe3f5c7dd3a020f534794d3"
+  dependencies:
+    lite-url "^1.0.5"
+
 bytes@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
@@ -5136,6 +5142,10 @@ levn@^0.3.0, levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
+
+lite-url@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/lite-url/-/lite-url-1.0.5.tgz#67e3130dcc4e5f4becbf7b839a56a99dfe0a0526"
 
 load-json-file@^1.0.0:
   version "1.1.0"

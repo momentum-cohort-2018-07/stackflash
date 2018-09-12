@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import { Title, Button } from 'bloomer'
-import FlashCardContainer from './FlashCardContainer'
-import LoggedOut from './LoggedOut'
+import { Router, route } from 'buttermilk'
+
 import data from '../data'
-import StacksView from './StacksView'
+import RegistrationForm from './RegistrationForm'
+import AppShell from './AppShell'
+import LoginForm from './LoginForm'
+import AllStacksContainer from './AllStacksContainer'
 
 class App extends Component {
   constructor () {
     super()
     this.state = {
-      currentUser: null,
-      stacks: []
+      currentUser: null
     }
 
     this.setCurrentUser = this.setCurrentUser.bind(this)
@@ -20,20 +21,21 @@ class App extends Component {
     const username = window.localStorage.getItem('username')
     const token = window.localStorage.getItem('token')
     if (username && token) {
+      console.log('username and token found')
       this.setState({
         currentUser: { username, token }
-      })
-      data.setUserToken(token)
-      data.getStacks().then(stacks => this.setState({
-        stacks
-      }))
+      }, () => console.log(this.state))
+    } else {
+      route('/login')
     }
   }
 
   setCurrentUser (user) {
     window.localStorage.setItem('username', user.username)
     window.localStorage.setItem('token', user.token)
-    this.setState({ currentUser: user })
+    this.setState({ currentUser: user }, () => {
+      route('/')
+    })
   }
 
   logout () {
@@ -46,42 +48,24 @@ class App extends Component {
 
   render () {
     return (
-      <div className='App'>
-        <section className='sidebar'>
-          <Title>StackFlash</Title>
-          {this.state.currentUser &&
-          <div>
-            <p>Hello, {this.state.currentUser.username}!</p>
-            <Button onClick={() => this.logout()}>Sign Out</Button>
-          </div>
+      <Router
+        outerComponent={AppShell}
+        routes={[
+          {
+            path: '/register',
+            render: () => <RegistrationForm setCurrentUser={this.setCurrentUser} />
+          },
+          {
+            path: '/login',
+            render: () => <LoginForm setCurrentUser={this.setCurrentUser} />
+          },
+          {
+            path: '*',
+            render: () => (
+              <AllStacksContainer currentUser={this.state.currentUser} />
+            )
           }
-          <div className='attribution'>
-            <p>
-              Created by Cohort 2 at <a href='https://www.momentumlearn.com/'>Momentum</a>.
-            </p>
-            <p>
-              <a href='https://github.com/momentum-cohort-2018-07/stackflash'>See the code at GitHub.</a>
-            </p>
-          </div>
-        </section>
-        <main className='main'>
-          <div className='board'>
-            <FlashCardContainer>
-              {this.state.currentUser
-                ? <div>
-                  {this.state.stacks.map((stack) => <StacksView key={stack.id} stack={stack} />)}
-                  <div className='stackContainer'>
-                    <div className='addStack'>+</div>
-                    <div className='numberOfCards'><p>Add a New Deck</p></div>
-                  </div>
-                </div>
-                : <LoggedOut
-                  setIsRegistering={() => this.setIsRegistering()} setCurrentUser={(user) => this.setCurrentUser(user)} />
-              }
-            </FlashCardContainer>
-          </div>
-        </main>
-      </div>
+        ]} />
     )
   }
 }

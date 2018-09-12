@@ -9,6 +9,12 @@ body {
   color: #152614;
 }
 
+a[data-active] {
+  color: black;
+  font-weight: bold;
+  cursor: default;
+}
+
 .App {
   padding: 1rem 2rem;
   display: flex;
