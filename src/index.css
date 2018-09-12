@@ -24,7 +24,7 @@ body {
 
 .board {
   border: 1px solid black;
-  height: 90vh;
+  min-height: 90vh;
   width: 100%;
 }
 
@@ -35,4 +35,99 @@ body {
   padding: 1rem 2rem;
   margin: 2rem auto;
   width: 75%;
+}
+
+.miniCard {
+  display: inline-block;
+  border: 1px solid gray;
+  border-radius: 2px;
+  height: 125px;
+  max-width: 30%;
+  padding: 15px;
+  margin-top: 10px;
+  text-align: center;    
+  font-size: .5rem;
+  line-height: .75rem;
+}
+
+.stackTitle, .editTitleButtonDiv, .deleteFlashCardDiv, .edit-runDiv {
+  display: inline-block;
+  vertical-align: top;
+}
+
+h1.title {
+  font-size: 1.25rem;
+  display: inline-block;
+}
+
+.stackTitle {
+  width: 80%;
+  font-size: 1rem;
+  display: inline-block;
+}
+
+.editTitleButton, .cancelTitleEditButton, .editModeButton, .runModeButton {
+  border-radius: 2px;
+}
+
+.editModeButton, .runModeButton {
+  font-size: .75rem;  
+}
+
+.editTitleButton, .cancelTitleEditButton {
+  border: none;
+  display: inline-block;
+  font-size: 1rem;
+}
+
+.cardDeleteButton{
+  float: right;
+  border: none;
+  color:lightgray;
+  font-size: 1rem;
+}
+
+.cardDeleteButton:hover {
+  color: red;
+  font-size: 1rem;
+}
+
+.addCardButton {
+  display: inline-block;
+  margin: 20px auto;
+  width: 30%;
+  border: 1px dotted lightgray;
+  border-radius: 2px;
+  font-size: .75rem;
+  height: 125px;
+}
+
+.stackView {
+  display: flex;
+}
+
+.stackContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.stackImage {
+  height: 50vh;
+  min-width: 225px;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.75);
+}
+
+.addStack {
+  height: 50vh;
+  min-width: 225px;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.75);
+  text-align: center;
+  align-items: center;
 }

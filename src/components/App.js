@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import LoginForm from './LoginForm'
-import { Title } from 'bloomer'
+import { Title, Button } from 'bloomer'
 import FlashCardContainer from './FlashCardContainer'
-import RegistrationForm from './RegistrationForm'
 import LoggedOut from './LoggedOut'
 import data from '../data'
+import StacksView from './StacksView'
 
 class App extends Component {
   constructor () {
     super()
     this.state = {
-      currentUser: null
+      currentUser: null,
+      stacks: []
     }
 
     this.setCurrentUser = this.setCurrentUser.bind(this)
@@ -24,6 +24,9 @@ class App extends Component {
         currentUser: { username, token }
       })
       data.setUserToken(token)
+      data.getStacks().then(stacks => this.setState({
+        stacks
+      }))
     }
   }
 
@@ -33,11 +36,25 @@ class App extends Component {
     this.setState({ currentUser: user })
   }
 
+  logout () {
+    data.setUserToken(null)
+    window.localStorage.clear()
+    this.setState({
+      currentUser: null
+    })
+  }
+
   render () {
     return (
       <div className='App'>
         <section className='sidebar'>
           <Title>StackFlash</Title>
+          {this.state.currentUser &&
+          <div>
+            <p>Hello, {this.state.currentUser.username}!</p>
+            <Button onClick={() => this.logout()}>Sign Out</Button>
+          </div>
+          }
           <div className='attribution'>
             <p>
               Created by Cohort 2 at <a href='https://www.momentumlearn.com/'>Momentum</a>.
@@ -51,7 +68,13 @@ class App extends Component {
           <div className='board'>
             <FlashCardContainer>
               {this.state.currentUser
-                ? <div>Logged in as {this.state.currentUser.username}</div>
+                ? <div>
+                  {this.state.stacks.map((stack) => <StacksView key={stack.id} stack={stack} />)}
+                  <div className='stackContainer'>
+                    <div className='addStack'>+</div>
+                    <div className='numberOfCards'><p>Add a New Deck</p></div>
+                  </div>
+                </div>
                 : <LoggedOut
                   setIsRegistering={() => this.setIsRegistering()} setCurrentUser={(user) => this.setCurrentUser(user)} />
               }

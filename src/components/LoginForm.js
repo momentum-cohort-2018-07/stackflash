@@ -17,7 +17,6 @@ class LoginForm extends React.Component {
   handleSubmit (event) {
     event.preventDefault()
     const { username, password } = this.state
-    console.log('submitting login')
     data.login(username, password)
       .then(user => this.props.setCurrentUser(user))
       .catch(err => {
