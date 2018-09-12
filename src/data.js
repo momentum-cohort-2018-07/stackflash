@@ -58,6 +58,7 @@ const data = {
         return user
       })
       .catch(err => {
+        console.log(err)
         if (err.response.statusCode === 422) {
           const errors = err.response.body.errors
           if (errors[0].msg === 'cannot be empty') {

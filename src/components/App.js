@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import LoginForm from './LoginForm'
 import { Title, Button } from 'bloomer'
 import FlashCardContainer from './FlashCardContainer'
+import LoggedOut from './LoggedOut'
 import data from '../data'
 import StacksView from './StacksView'
 
@@ -75,7 +75,8 @@ class App extends Component {
                     <div className='numberOfCards'><p>Add a New Deck</p></div>
                   </div>
                 </div>
-                : <LoginForm setCurrentUser={this.setCurrentUser} />
+                : <LoggedOut
+                  setIsRegistering={() => this.setIsRegistering()} setCurrentUser={(user) => this.setCurrentUser(user)} />
               }
             </FlashCardContainer>
           </div>

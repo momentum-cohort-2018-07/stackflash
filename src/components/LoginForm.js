@@ -3,7 +3,7 @@ import { Field, Label, Control, Input, Button, Notification } from 'bloomer'
 import data from '../data'
 
 class LoginForm extends React.Component {
-  constructor () {
+  constructor (props) {
     super()
     this.state = {
       username: '',
@@ -27,6 +27,7 @@ class LoginForm extends React.Component {
   }
 
   render () {
+    // let { registrationView } = this.props
     const { username, password, errorMsg } = this.state
 
     return (
