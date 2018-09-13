@@ -22,7 +22,7 @@ class StackPageContainer extends React.Component {
 }
 
 StackPageContainer.propTypes = {
-  id: PropTypes.number
+  id: PropTypes.string
 }
 
 export default StackPageContainer
