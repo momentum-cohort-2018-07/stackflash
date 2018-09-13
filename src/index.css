@@ -44,6 +44,7 @@ a.active {
   min-height: 90vh;
   width: 100%;
   background-color: var(--color-light);
+  padding: 1rem;
 }
 
 .BigFlashCard {
