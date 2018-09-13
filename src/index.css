@@ -184,3 +184,18 @@ a.active {
   text-align: center;
   align-items: center;
 }
+.Stack__newStack {
+  background-color: var(--color-info)
+}
+.Stack__new-stack-name {
+  font-size: 15px;
+}
+.save-new-stack {
+  margin-top: 15px;
+}
+.save-new-stack:hover {
+  background-color: var(--color-success)
+}
+.cancel-new-stack:hover {
+  background-color: var(--color-danger)
+}

@@ -1,8 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
+import AddNewStack from './AddStack'
 
 class StacksPage extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      newStack: false
+    }
+  }
+  handleClick () {
+    this.setState({
+      newStack: true
+    })
+  }
+  reset () {
+    this.setState({
+      newStack: false
+    })
+  }
+
   render () {
     if (this.props.stacks) {
       return (
@@ -11,8 +29,21 @@ class StacksPage extends React.Component {
           <div className='Stack'>
             <div className='Stack__fg'>
               <div className='Stack__content'>
-                <div className='Stack__addStack'>+</div>
-                <div>Add a new stack</div>
+                {
+                  this.state.newStack
+                    ? <div className='new-stack-title-card'>
+                      <AddNewStack />
+                      <div className='save-new-stack'
+                        onClick={() => this.reset()}>Save</div>
+                      <div className='cancel-new-stack'
+                        onClick={() => this.reset()}>Cancel</div>
+                    </div>
+                    : <div className='new-stack-button'
+                      onClick={() => this.handleClick()}>
+                      <div className='Stack__addStack'>+</div>
+                      <div>Add a new stack</div>
+                    </div>
+                }
               </div>
             </div>
             <div className='Stack__bg'>&nbsp;</div>
