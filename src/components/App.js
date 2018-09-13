@@ -23,6 +23,7 @@ class App extends Component {
     const token = window.localStorage.getItem('token')
     if (username && token) {
       this.state.currentUser = { username, token }
+      data.setUserToken(token)
     }
 
     this.setCurrentUser = this.setCurrentUser.bind(this)
