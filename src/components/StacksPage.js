@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { route } from 'buttermilk'
+import { withRouter } from 'react-router-dom'
 
 class StacksPage extends React.Component {
   render () {
     if (this.props.stacks) {
       return (
-        <div class='Stacks'>
+        <div className='Stacks'>
           {this.props.stacks.map((stack) => <Stack key={stack.id} stack={stack} />)}
           <div className='Stack'>
             <div className='Stack__fg'>
@@ -36,25 +36,18 @@ StacksPage.propTypes = {
 
 // Why is Stack in here rather than in its own file?
 // It is only used in StacksPage, so it makes sense to put it in the same file.
-class Stack extends React.Component {
-  render () {
-    const { stack } = this.props
-    return (
-      <div className='Stack' onClick={() => route(`/stacks/${stack.id}`)}>
-        <div className='Stack__fg'>
-          <div className='Stack__content'>
-            <div className='Stack__title has-text-weight-bold'>{ stack.title }</div>
-            <div className='Stack__cardCount'>{ stack.cardCount } cards</div>
-          </div>
+const Stack = withRouter(({ history, stack }) => {
+  return (
+    <div className='Stack' onClick={() => history.push(`/stacks/${stack.id}`)}>
+      <div className='Stack__fg'>
+        <div className='Stack__content'>
+          <div className='Stack__title has-text-weight-bold'>{ stack.title }</div>
+          <div className='Stack__cardCount'>{ stack.cardCount } cards</div>
         </div>
-        <div className='Stack__bg'>&nbsp;</div>
       </div>
-    )
-  }
-}
-
-Stack.propTypes = {
-  stack: stackType
-}
+      <div className='Stack__bg'>&nbsp;</div>
+    </div>
+  )
+})
 
 export default StacksPage

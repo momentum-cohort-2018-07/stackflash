@@ -20,7 +20,7 @@ body {
   color: #152614;
 }
 
-a[data-active] {
+a.active {
   color: black;
   font-weight: bold;
   cursor: default;
@@ -46,13 +46,14 @@ a[data-active] {
   background-color: var(--color-light);
 }
 
-.FlashCardContainer {
+.BigFlashCard {
   border: 1px solid black;
   border-radius: 10px;
   box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.75);
   padding: 1rem 2rem;
   margin: 2rem auto;
   width: 75%;
+  background-color: white;
 }
 
 .Stacks {

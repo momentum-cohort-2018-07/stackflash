@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, Label, Control, Input, Button, Notification } from 'bloomer'
-import { Link } from 'buttermilk'
+import { NavLink } from 'react-router-dom'
 import data from '../data'
 import BigFlashCard from './BigFlashCard'
 
@@ -34,9 +34,9 @@ class LoginForm extends React.Component {
     return (
       <BigFlashCard>
         <div className='is-size-4 has-text-centered'>
-          <Link href='/login'>Log In</Link>
+          <NavLink to='/login'>Log In</NavLink>
           &nbsp;|&nbsp;
-          <Link href='/register'>Register</Link>
+          <NavLink to='/register'>Register</NavLink>
         </div>
 
         <div className='LoginForm'>
