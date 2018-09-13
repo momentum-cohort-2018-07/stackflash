@@ -23,7 +23,6 @@ class Sidebar extends React.Component {
             <a href='https://github.com/momentum-cohort-2018-07/stackflash'>See the code at GitHub.</a>
           </p>
         </div>
-        <div class='Loader' />
       </section>
     )
   }
