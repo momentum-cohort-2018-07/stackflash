@@ -21,7 +21,7 @@ class StackTitle extends Component {
   }
 
   isEditingFn () {
-    this.setState({isEditing: true})
+    this.setState({ isEditing: true })
   }
 
   render () {
