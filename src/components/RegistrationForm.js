@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, Button, Control, Notification, Input, Label } from 'bloomer'
-import { Link } from 'buttermilk'
-import FlashCardContainer from './FlashCardContainer'
+import { NavLink } from 'react-router-dom'
+import BigFlashCard from './BigFlashCard'
 import data from '../data'
 
 class RegistrationForm extends React.Component {
@@ -37,12 +37,12 @@ class RegistrationForm extends React.Component {
     const { username, password, passwordConfirmation, errorMsg } = this.state
 
     return (
-      <FlashCardContainer>
+      <BigFlashCard>
 
         <div className='is-size-4 has-text-centered'>
-          <Link href='/login'>Log In</Link>
+          <NavLink to='/login'>Log In</NavLink>
           &nbsp;|&nbsp;
-          <Link href='/register'>Register</Link>
+          <NavLink to='/register'>Register</NavLink>
         </div>
 
         <div className='RegistrationForm'>
@@ -74,7 +74,7 @@ class RegistrationForm extends React.Component {
 
           </form>
         </div>
-      </FlashCardContainer>
+      </BigFlashCard>
     )
   }
 }

@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
-import { Router, route } from 'buttermilk'
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect
+} from 'react-router-dom'
 
+import Sidebar from './Sidebar'
 import data from '../data'
 import RegistrationForm from './RegistrationForm'
-import AppShell from './AppShell'
 import LoginForm from './LoginForm'
-import AllStacksContainer from './AllStacksContainer'
+import StacksPage from './StacksPageContainer'
+import StackPageContainer from './StackPageContainer'
 
 class App extends Component {
   constructor () {
@@ -14,28 +19,20 @@ class App extends Component {
       currentUser: null
     }
 
-    this.setCurrentUser = this.setCurrentUser.bind(this)
-  }
-
-  componentDidMount () {
     const username = window.localStorage.getItem('username')
     const token = window.localStorage.getItem('token')
     if (username && token) {
-      console.log('username and token found')
-      this.setState({
-        currentUser: { username, token }
-      }, () => console.log(this.state))
-    } else {
-      route('/login')
+      this.state.currentUser = { username, token }
     }
+
+    this.setCurrentUser = this.setCurrentUser.bind(this)
+    this.logout = this.logout.bind(this)
   }
 
   setCurrentUser (user) {
     window.localStorage.setItem('username', user.username)
     window.localStorage.setItem('token', user.token)
-    this.setState({ currentUser: user }, () => {
-      route('/')
-    })
+    this.setState({ currentUser: user })
   }
 
   logout () {
@@ -47,26 +44,45 @@ class App extends Component {
   }
 
   render () {
+    const { currentUser } = this.state
     return (
-      <Router
-        outerComponent={AppShell}
-        routes={[
-          {
-            path: '/register',
-            render: () => <RegistrationForm setCurrentUser={this.setCurrentUser} />
-          },
-          {
-            path: '/login',
-            render: () => <LoginForm setCurrentUser={this.setCurrentUser} />
-          },
-          {
-            path: '*',
-            render: () => (
-              <AllStacksContainer currentUser={this.state.currentUser} />
-            )
-          }
-        ]} />
+      <Router>
+        <div className='App'>
+          <Sidebar currentUser={currentUser} onLogout={this.logout} />
+          <main className='main'>
+            <div className='board'>
+              <Route exact path='/' render={() =>
+                <Guard condition={this.state.currentUser} redirectTo='/login'>
+                  <StacksPage currentUser={this.state.currentUser} />
+                </Guard>} />
+              <Route path='/stacks/:id' render={({ match }) =>
+                <Guard condition={this.state.currentUser} redirectTo='/login'>
+                  <StackPageContainer id={match.params.id} />
+                </Guard>
+              } />
+              <Route path='/register' render={() =>
+                <Guard condition={!this.state.currentUser} redirectTo='/'>
+                  <RegistrationForm setCurrentUser={this.setCurrentUser} />
+                </Guard>}
+              />
+              <Route path='/login' render={() =>
+                <Guard condition={!this.state.currentUser} redirectTo='/'>
+                  <LoginForm setCurrentUser={this.setCurrentUser} />
+                </Guard>}
+              />
+            </div>
+          </main>
+        </div>
+      </Router>
     )
+  }
+}
+
+const Guard = ({ redirectTo, condition, children }) => {
+  if (condition) {
+    return children
+  } else {
+    return <Redirect to={redirectTo} />
   }
 }
 

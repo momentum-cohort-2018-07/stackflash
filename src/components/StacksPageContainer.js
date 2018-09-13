@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import data from '../data'
-import AllStacksView from './AllStacksView'
+import StacksPage from './StacksPage'
 
-class AllStacksContainer extends React.Component {
+class StacksPageContainer extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -25,7 +25,6 @@ class AllStacksContainer extends React.Component {
     const { currentUser } = this.props
     if (currentUser && currentUser.token) {
       data.setUserToken(currentUser.token)
-      console.log('user token set')
       data.getStacks().then(stacks => this.setState({
         stacks
       }))
@@ -34,16 +33,16 @@ class AllStacksContainer extends React.Component {
 
   render () {
     return (
-      <AllStacksView stacks={this.state.stacks} />
+      <StacksPage stacks={this.state.stacks} />
     )
   }
 }
 
-AllStacksContainer.propTypes = {
+StacksPageContainer.propTypes = {
   currentUser: PropTypes.shape({
     username: PropTypes.string,
     token: PropTypes.string
   })
 }
 
-export default AllStacksContainer
+export default StacksPageContainer

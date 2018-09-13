@@ -1,8 +1,8 @@
 import React from 'react'
 import { Field, Label, Control, Input, Button, Notification } from 'bloomer'
-import { Link, route } from 'buttermilk'
+import { NavLink } from 'react-router-dom'
 import data from '../data'
-import FlashCardContainer from './FlashCardContainer'
+import BigFlashCard from './BigFlashCard'
 
 class LoginForm extends React.Component {
   constructor (props) {
@@ -32,11 +32,11 @@ class LoginForm extends React.Component {
     const { username, password, errorMsg } = this.state
 
     return (
-      <FlashCardContainer>
+      <BigFlashCard>
         <div className='is-size-4 has-text-centered'>
-          <Link href='/login'>Log In</Link>
+          <NavLink to='/login'>Log In</NavLink>
           &nbsp;|&nbsp;
-          <Link href='/register'>Register</Link>
+          <NavLink to='/register'>Register</NavLink>
         </div>
 
         <div className='LoginForm'>
@@ -63,7 +63,7 @@ class LoginForm extends React.Component {
             <Button type='submit'>Login</Button>
           </form>
         </div>
-      </FlashCardContainer>
+      </BigFlashCard>
     )
   }
 }

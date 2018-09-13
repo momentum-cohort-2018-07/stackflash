@@ -1,3 +1,14 @@
+:root {  
+  --color-light: hsl(0, 0%, 96%);
+  --color-dark: hsl(0, 0%, 21%);
+  --color-primary: hsl(171, 100%, 41%);
+  --color-info: hsl(204, 86%, 53%);
+  --color-link: hsl(217, 71%, 53%);
+  --color-success: hsl(141, 71%, 48%);
+  --color-warning: hsl(48, 100%, 67%);
+  --color-danger: hsl(348, 100%, 61%);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -9,7 +20,7 @@ body {
   color: #152614;
 }
 
-a[data-active] {
+a.active {
   color: black;
   font-weight: bold;
   cursor: default;
@@ -32,16 +43,82 @@ a[data-active] {
   border: 1px solid black;
   min-height: 90vh;
   width: 100%;
+  background-color: var(--color-light);
 }
 
-.FlashCardContainer {
+.BigFlashCard {
   border: 1px solid black;
   border-radius: 10px;
   box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.75);
   padding: 1rem 2rem;
   margin: 2rem auto;
   width: 75%;
+  background-color: white;
 }
+
+.Stacks {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.Stack {
+  height: 300px;
+  width: 180px;
+  margin: 20px 10px;
+  position: relative;
+}
+
+.Stack__fg {
+  width: 100%;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.25);
+  background-color: white;
+  z-index: 999;
+  position: absolute;
+}
+
+.Stack__content {
+  z-index: 999;
+}
+
+.Stack__bg {
+  width: 100%;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.5);
+  background-color: white;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 0;
+}
+
+.Stack__fg:hover {
+  cursor: pointer;
+  background-color: var(--color-link);
+  color: var(--color-light);
+}
+
+.Stack__content {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.Stack__addStack {
+  font-size: 400%;
+  font-weight: bold;
+}
+
 
 .miniCard {
   display: inline-block;
@@ -56,15 +133,9 @@ a[data-active] {
   line-height: .75rem;
 }
 
-.stackTitle, .editTitleButtonDiv, .deleteFlashCardDiv, .edit-runDiv {
+.editTitleButtonDiv, .deleteFlashCardDiv, .edit-runDiv {
   display: inline-block;
   vertical-align: top;
-}
-
-.stackTitle {
-  width: 80%;
-  font-size: 1rem;
-  display: inline-block;
 }
 
 .editTitleButton, .cancelTitleEditButton, .editModeButton, .runModeButton {
@@ -101,26 +172,6 @@ a[data-active] {
   border-radius: 2px;
   font-size: .75rem;
   height: 125px;
-}
-
-.stackView {
-  display: flex;
-}
-
-.stackContainer {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin: 1rem;
-  padding: 1rem;
-}
-
-.stackImage {
-  height: 50vh;
-  min-width: 225px;
-  border: 1px solid black;
-  border-radius: 10px;
-  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.75);
 }
 
 .addStack {
