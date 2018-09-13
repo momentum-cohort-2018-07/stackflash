@@ -56,11 +56,13 @@ class App extends Component {
             <FlashCardContainer>
               {this.state.currentUser
                 ? <div>
-                  <div>Logged in as {this.state.currentUser.username}</div>
+                  <div>Welcome {this.state.currentUser.username}</div>
                   {this.state.stacks.map((stack) => <StacksView key={stack.id} stack={stack} />)}
-                  <div className='stackContainer'>
-                    <div className='addStack'>+</div>
-                    <div className='numberOfCards'><p>Add a New Deck</p></div>
+                  <div className='stackContainer new-stack'>
+                    <div className='new-stack'>
+                      <h4>+</h4>
+                      <h4>Add New Deck</h4>
+                    </div>
                   </div>
                 </div>
                 : <LoginForm setCurrentUser={this.setCurrentUser} />

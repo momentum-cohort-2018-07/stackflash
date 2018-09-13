@@ -5,7 +5,6 @@ class StacksView extends React.Component {
     return (
       <div className='stackView'>
         <div className='stackContainer'>
-          <div className='stackImage' />
           <div className='stackTitle'><h4>{ this.props.stack.title } </h4></div>
           <div className='numberOfCards'><p>{ this.props.stack.cardCount } cards</p></div>
         </div>
