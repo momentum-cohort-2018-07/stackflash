@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Form, Label, Input, Button, Control } from 'bloomer'
+import { Label, Control, Input, Button } from 'bloomer'
+import data from '../data'
 
 class AddCard extends Component {
   constructor () {
@@ -8,23 +9,31 @@ class AddCard extends Component {
       question: '',
       answer: ''
     }
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  handleSubmit (e) {
+    e.preventDefault()
+    const { stackID, addCard } = this.props
+    let card = this.state
+    console.log(addCard, 'add card')
+    data.createCard(stackID, card)
+    // this.setState(state => ({ addCard: false }))
   }
   render () {
-    // const newCard = this.props.addCard
-    // debugger
+    const { answer, question } = this.state
     return (
       <div className='addCardFormDiv'>
-        <Form className='addCardForm'>
+        <form className='addCardForm' >
           <Label className='questionLabel'>Question</Label>
           <Control>
-            <Input className='questionInput' />
+            <Input className='question input' value={question} onChange={event => { this.setState({ question: event.target.value }) }} />
           </Control>
           <Label className='answerLabel'>Answer</Label>
           <Control>
-            <Input className='answerInput' />
+            <Input className='answer input' value={answer} onChange={event => { this.setState({ answer: event.target.value }) }} />
           </Control>
-        </Form>
-        <Button className='saveButton' type='submit'>Save</Button>
+        </form>
+        <Button className='saveButton' type='submit' onClick={this.handleSubmit}>Save</Button>
         <Button className='cancelButton' type='cancel'>Cancel</Button>
       </div>
     )
