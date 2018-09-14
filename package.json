@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@storybook/react": "^3.4.10",
-    "nock": "^9.6.1"
+    "nock": "^9.6.1",
+    "storybook-react-router": "^1.0.1"
   }
 }
