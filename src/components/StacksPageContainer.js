@@ -7,7 +7,8 @@ class StacksPageContainer extends React.Component {
   constructor () {
     super()
     this.state = {
-      stacks: []
+      stacks: [],
+      isLoading: true
     }
   }
 
@@ -26,14 +27,15 @@ class StacksPageContainer extends React.Component {
     if (currentUser && currentUser.token) {
       data.setUserToken(currentUser.token)
       data.getStacks().then(stacks => this.setState({
-        stacks
+        stacks,
+        isLoading: false
       }))
     }
   }
 
   render () {
     return (
-      <StacksPage stacks={this.state.stacks} />
+      <StacksPage stacks={this.state.stacks} isLoading={this.state.isLoading} />
     )
   }
 }
