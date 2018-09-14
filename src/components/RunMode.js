@@ -16,14 +16,6 @@ class RunMode extends React.Component {
     this.setState(state => ({ flipped: !state.flipped }))
   }
 
-  onThumbsUp () {
-
-  }
-
-  onThumbsDown () {
-
-  }
-
   render () {
     let { front, back } = this.props.card
     let { onThumbsUp, onThumbsDown } = this.props
