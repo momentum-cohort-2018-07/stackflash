@@ -21,6 +21,26 @@ class StacksPage extends React.Component {
     })
   }
 
+  renderNewStackForm () {
+    return (<div className='new-stack-title-card'>
+      <AddNewStack />
+      <div className='save-new-stack'
+        onClick={() => this.reset()}>Save</div>
+      <div className='cancel-new-stack'
+        onClick={() => this.reset()}>Cancel</div>
+    </div>)
+  }
+
+  renderAddNewStack () {
+    return (
+      <div className='new-stack-button'
+        onClick={() => this.handleClick()}>
+        <div className='Stack__addStack'>+</div>
+        <div>Add a new stack</div>
+      </div>
+    )
+  }
+
   render () {
     if (this.props.stacks) {
       return (
@@ -31,18 +51,8 @@ class StacksPage extends React.Component {
               <div className='Stack__content'>
                 {
                   this.state.newStack
-                    ? <div className='new-stack-title-card'>
-                      <AddNewStack />
-                      <div className='save-new-stack'
-                        onClick={() => this.reset()}>Save</div>
-                      <div className='cancel-new-stack'
-                        onClick={() => this.reset()}>Cancel</div>
-                    </div>
-                    : <div className='new-stack-button'
-                      onClick={() => this.handleClick()}>
-                      <div className='Stack__addStack'>+</div>
-                      <div>Add a new stack</div>
-                    </div>
+                    ? this.renderNewStackForm()
+                    : this.renderAddNewStack()
                 }
               </div>
             </div>

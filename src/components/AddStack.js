@@ -18,7 +18,7 @@ class AddNewStack extends Component {
     return (
       <div className='Stack__newStack'>
         <input type='text' className='Stack__new-stack-name'
-          onChange={this.handleChange.bind(this)} />
+          onChange={this.handleChange.bind(this)} placeholder='Title' style={{ textAlign: 'center' }} />
       </div>
     )
   }

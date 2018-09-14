@@ -184,11 +184,11 @@ a.active {
   text-align: center;
   align-items: center;
 }
-.Stack__newStack {
-  background-color: var(--color-info)
-}
+
 .Stack__new-stack-name {
   font-size: 15px;
+  font-weight: bolder;
+  max-width: 150px;
 }
 .save-new-stack {
   margin-top: 15px;
