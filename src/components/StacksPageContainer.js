@@ -9,6 +9,8 @@ class StacksPageContainer extends React.Component {
     this.state = {
       stacks: []
     }
+
+    this.saveNewStack = this.saveNewStack.bind(this)
   }
 
   componentDidMount () {
@@ -31,9 +33,18 @@ class StacksPageContainer extends React.Component {
     }
   }
 
+  saveNewStack (stack) {
+    return data.createStack(stack)
+      .then(newStack => {
+        this.setState(state => ({
+          stacks: state.stacks.concat(newStack)
+        }))
+      })
+  }
+
   render () {
     return (
-      <StacksPage stacks={this.state.stacks} />
+      <StacksPage stacks={this.state.stacks} onSaveNewStack={this.saveNewStack} />
     )
   }
 }

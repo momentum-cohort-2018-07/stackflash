@@ -1,13 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
-import AddNewStack from './AddStack'
+
+import data from '../data'
 
 class StacksPage extends React.Component {
   constructor () {
     super()
     this.state = {
-      newStack: false
+      newStack: false,
+      newStackTitle: ''
     }
   }
   handleClick () {
@@ -15,17 +17,31 @@ class StacksPage extends React.Component {
       newStack: true
     })
   }
+
   reset () {
     this.setState({
-      newStack: false
+      newStack: false,
+      newStackTitle: ''
+    })
+  }
+
+  save () {
+    this.props.onSaveNewStack({ title: this.state.newStackTitle })
+    this.setState({
+      newStack: false,
+      newStackTitle: ''
     })
   }
 
   renderNewStackForm () {
     return (<div className='new-stack-title-card'>
-      <AddNewStack />
+      <div className='Stack__newStack'>
+        <input type='text' className='Stack__new-stack-name'
+          onChange={e => this.setState({ newStackTitle: e.target.value })}
+          placeholder='Title' style={{ textAlign: 'center' }} />
+      </div>
       <div className='save-new-stack'
-        onClick={() => this.reset()}>Save</div>
+        onClick={() => this.save()}>Save</div>
       <div className='cancel-new-stack'
         onClick={() => this.reset()}>Cancel</div>
     </div>)
