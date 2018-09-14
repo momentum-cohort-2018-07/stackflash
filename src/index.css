@@ -72,6 +72,7 @@ a.active {
   width: 180px;
   margin: 20px 10px;
   position: relative;
+  text-align: center;
 }
 
 .Stack__fg {
@@ -183,4 +184,18 @@ a.active {
   box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.75);
   text-align: center;
   align-items: center;
+}
+
+.Spinner {
+  -webkit-animation: spinAround 500ms infinite linear;
+  animation: spinAround 500ms infinite linear;
+  border: 3px solid var(--color-info);
+  border-radius: 290486px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  width: 1em;
 }
