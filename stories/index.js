@@ -1,5 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
+import StoryRouter from 'storybook-react-router'
+
 import { action } from '@storybook/addon-actions'
 import LoginForm from '../src/components/LoginForm'
 import StackTitle from '../src/components/StackTitle'
@@ -9,6 +11,7 @@ import 'bulma/css/bulma.css'
 import '../src/index.css'
 
 storiesOf('LoginForm', module)
+  .addDecorator(StoryRouter())
   .add('default', () => (
     <LoginForm setCurrentUser={action('setCurrentUser')} />
   ))
