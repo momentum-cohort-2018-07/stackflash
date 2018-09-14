@@ -72,6 +72,7 @@ a.active {
   width: 180px;
   margin: 20px 10px;
   position: relative;
+  text-align: center;
 }
 
 .Stack__fg {
@@ -211,3 +212,32 @@ a.active {
 }
 
 
+.Stack__newStack {
+  background-color: var(--color-info)
+}
+.Stack__new-stack-name {
+  font-size: 15px;
+}
+.save-new-stack {
+  margin-top: 15px;
+}
+.save-new-stack:hover {
+  background-color: var(--color-success)
+}
+.cancel-new-stack:hover {
+  background-color: var(--color-danger)
+}
+
+.Spinner {
+  -webkit-animation: spinAround 500ms infinite linear;
+  animation: spinAround 500ms infinite linear;
+  border: 3px solid var(--color-info);
+  border-radius: 290486px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+}
