@@ -4,8 +4,10 @@ import { action } from '@storybook/addon-actions'
 import LoginForm from '../src/components/LoginForm'
 import StackTitle from '../src/components/StackTitle'
 import StackPage from '../src/components/StackPage'
+import RunMode from '../src/components/RunMode'
 
 import 'bulma/css/bulma.css'
+import '@fortawesome/fontawesome-free/css/all.css'
 import '../src/index.css'
 
 storiesOf('LoginForm', module)
@@ -31,6 +33,17 @@ storiesOf('StackPage', module)
           { id: 'b', front: 'What is React Storybook used for?', back: 'ssss' },
           { id: 'b', front: 'What is React Storybook used for?', back: 'ssss' }
         ]
+      }
+    } />
+  ))
+
+storiesOf('RunMode', module)
+  .add('default', () => (
+    <RunMode card={
+      {
+        id: 'a',
+        front: 'Parrish street erwin road bulla pvlig bulla greeal de exprimare hipster, alt-country broad street subaru edict papal food truck',
+        back: 'Arm wrestling food truck rodeo lakewood maschio music on the lawn coffee'
       }
     } />
   ))
