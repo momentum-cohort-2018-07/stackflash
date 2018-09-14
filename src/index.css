@@ -129,7 +129,7 @@ a.active {
 .stackTitle {
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   line-height: 1.5rem;
 }
 
@@ -174,12 +174,10 @@ a.active {
   overflow: scroll;
 }
 
-/* .editButtonsDiv {
-  white-space: nowrap;
-}  */
 
 .edit-runDiv {
   white-space: nowrap;
+  margin: 0 auto;
 } 
 
 .editModeButton {
@@ -213,11 +211,10 @@ a.active {
   }
 
 .editTitleButton:hover {
+  color:hsl(348, 100%, 61%);
+}
 
-} 
-  
-  
-.cancelTitleEditButton {
+.cancelTitleEditButton:hover {
   color:hsl(348, 100%, 61%);
 }
 
@@ -273,3 +270,14 @@ a.active {
   text-align: center;
   align-items: center;
 }
+
+@media screen and (max-width: 699px) {
+    
+  .edit-runDiv {
+    display: block;
+    margin: 0 auto;
+    white-space: nowrap;
+  }
+}
+
+ 
