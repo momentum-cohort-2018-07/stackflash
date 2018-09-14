@@ -197,20 +197,65 @@ a.active {
 .card-run {
   border: 1px solid black;
 }
-
-.card-front, .card-back {
+.card-front {
   padding: 25px;
-  font-size: 16px;
+  font-size: 20px;
   text-align: center;
-  height: 75%;
+  height: 78%;
   clear: both;
+  overflow: auto;
 }
 
-.flip-card, .thumbs-down, .thumbs-up {
-  font-size: 3.4rem;
+.card-back {
+  padding: 0px 25px;
+  font-size: 20px;
   text-align: center;
+  height: 70%;
+  clear: both;
+  overflow: auto;
 }
 
+.flip-card:hover, .thumbs-down:hover, .thumbs-up:hover {
+  font-size: 3rem;
+}
+
+.flip-card {
+  font-size: 2.6rem;
+  padding: 0px 47% 0px 44%;
+  color: black;
+}
+
+.flip-card:hover {
+  color: blue;
+  font-size: 3.4rem;
+}
+
+.thumbs-down {
+  padding: 0px 0px 0px 15%;
+  color: red;
+  font-size: 2.5rem;
+}
+
+.thumbs-up {
+  padding: 0px 9% 0px 46%;
+  color: green;
+  font-size: 2.5rem;
+}
+
+.back-arrow-container {
+  float: left;
+}
+
+.back-arrow {
+  color: gray;
+  padding: 5px 10px;
+  font-size: 2rem;
+}
+
+.back-arrow:hover {
+  color: black;
+  font-size: 2.4rem;
+}
 
 .Stack__newStack {
   background-color: var(--color-info)

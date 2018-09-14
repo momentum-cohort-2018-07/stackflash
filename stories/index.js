@@ -45,5 +45,7 @@ storiesOf('RunMode', module)
         front: 'Parrish street erwin road bulla pvlig bulla greeal de exprimare hipster, alt-country broad street subaru edict papal food truck',
         back: 'Arm wrestling food truck rodeo lakewood maschio music on the lawn coffee'
       }
-    } />
+    }
+    onThumbsUp={action('thumbs up')}
+    onThumbsDown={action('thumbs down')} />
   ))
