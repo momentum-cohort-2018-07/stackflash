@@ -5,22 +5,9 @@ import {
   Delete,
   Button
 } from 'bloomer'
-import PropTypes from 'prop-types'
 
-class FlashCardMini extends Component {
-  render () {
-    return (
-      <div className='FlashCardMini'>
-        <div className='cardFront'>
-          <div className='miniCard'>
-            <div className='cardDeleteButtonDiv'><button className='cardDeleteButton'>&#10006;</button></div>
-            {this.props.card.front}
-          </div>
-        </div>
-      </div>
-    )
-  }
-}
+import FlashCardMini from './FlashCardMini.js'
+import PropTypes from 'prop-types'
 
 class StackPage extends Component {
   constructor (props) {
