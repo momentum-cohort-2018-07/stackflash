@@ -7,7 +7,8 @@ class StacksPageContainer extends React.Component {
   constructor () {
     super()
     this.state = {
-      stacks: []
+      stacks: [],
+      isLoading: true
     }
 
     this.saveNewStack = this.saveNewStack.bind(this)
@@ -28,7 +29,8 @@ class StacksPageContainer extends React.Component {
     if (currentUser && currentUser.token) {
       data.setUserToken(currentUser.token)
       data.getStacks().then(stacks => this.setState({
-        stacks
+        stacks,
+        isLoading: false
       }))
     }
   }
@@ -44,7 +46,7 @@ class StacksPageContainer extends React.Component {
 
   render () {
     return (
-      <StacksPage stacks={this.state.stacks} onSaveNewStack={this.saveNewStack} />
+      <StacksPage stacks={this.state.stacks} isLoading={this.state.isLoading} onSaveNewStack={this.saveNewStack} />
     )
   }
 }
