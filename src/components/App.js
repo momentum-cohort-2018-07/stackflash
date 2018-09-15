@@ -11,6 +11,7 @@ import RegistrationForm from './RegistrationForm'
 import LoginForm from './LoginForm'
 import StacksPage from './StacksPageContainer'
 import StackPageContainer from './StackPageContainer'
+import PropTypes from 'prop-types'
 
 class App extends Component {
   constructor () {
@@ -85,6 +86,13 @@ const Guard = ({ redirectTo, condition, children }) => {
   } else {
     return <Redirect to={redirectTo} />
   }
+}
+
+App.propTypes = {
+  currentUser: PropTypes.shape({
+    username: PropTypes.string,
+    token: PropTypes.string
+  }).isRequired
 }
 
 export default App

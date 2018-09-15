@@ -3,6 +3,7 @@ import { Field, Button, Control, Notification, Input, Label } from 'bloomer'
 import { NavLink } from 'react-router-dom'
 import BigFlashCard from './BigFlashCard'
 import data from '../data'
+import PropTypes from 'prop-types'
 
 class RegistrationForm extends React.Component {
   constructor () {
@@ -76,6 +77,16 @@ class RegistrationForm extends React.Component {
       </BigFlashCard>
     )
   }
+}
+
+RegistrationForm.propTypes = {
+  register: PropTypes.shape({
+    username: PropTypes.string,
+    password: PropTypes.string,
+    passwordConfirmation: PropTypes.string,
+    errorMsg: PropTypes.bool
+  }).isRequired,
+  onSubmit: PropTypes.func.isRequired
 }
 
 export default RegistrationForm

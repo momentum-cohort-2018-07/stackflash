@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 // import request from 'superagent'
 
 // create button
@@ -34,6 +35,12 @@ class StackTitle extends Component {
       </div>
     )
   }
+}
+
+StackTitle.PropTypes = {
+  title: PropTypes.shape({
+    isEditing: PropTypes.bool
+  })
 }
 
 export default StackTitle
