@@ -58,49 +58,60 @@ a.active {
 }
 
 .Stacks {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-between; */
   text-align: center;
   margin: 1rem;
   padding: 1rem;
 }
 
 .Stack {
-  height: 300px;
+  /* height: 300px;
   width: 180px;
   margin: 20px 10px;
-  position: relative;
+  position: relative; */
+  padding: 83% 50%;
+  /* margin-bottom: 20px; */
   text-align: center;
-}
-
-.Stack__fg {
-  width: 100%;
-  height: 300px;
   border: 1px solid black;
   border-radius: 10px;
   box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.25);
   background-color: white;
+  position: relative;
+}
+
+.Stack__fg {
+  /* width: 100%; */
+  /* height: 300px; */
+  /* border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.25);
+  background-color: white;
   z-index: 999;
-  position: absolute;
+  position: absolute; */
 }
 
 .Stack__content {
-  z-index: 999;
+  /* z-index: 999; */
+  position: absolute;
+  width: 100%;
+  top: 40%;
+  left: 0%;
 }
 
 .Stack__bg {
-  width: 100%;
-  height: 300px;
-  border: 1px solid black;
+  /* width: 100%; */
+  /* height: 300px; */
+  /* border: 1px solid black;
   border-radius: 10px;
   box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.5);
   background-color: white;
   position: absolute;
   top: 10px;
   left: 10px;
-  z-index: 0;
+  z-index: 0; */
 }
 
 .Stack__fg:hover {
@@ -111,9 +122,9 @@ a.active {
 
 .Stack__content {
   text-align: center;
-  position: relative;
+  /* position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%); */
 }
 
 .Stack__addStack {

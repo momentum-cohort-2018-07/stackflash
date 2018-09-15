@@ -41,14 +41,17 @@ storiesOf('StackPage', module)
   ))
 
 storiesOf('RunMode', module)
-  .add('default', () => (
-    <RunMode card={
-      {
-        id: 'a',
-        front: 'Parrish street erwin road bulla pvlig bulla greeal de exprimare hipster, alt-country broad street subaru edict papal food truck',
-        back: 'Arm wrestling food truck rodeo lakewood maschio music on the lawn coffee'
-      }
+  .add('default', () => {
+    const card = {
+      id: 'a',
+      front: 'Parrish street erwin road bulla pvlig bulla greeal de exprimare hipster, alt-country broad street subaru edict papal food truck',
+      back: 'Arm wrestling food truck rodeo lakewood maschio music on the lawn coffee'
     }
-    onThumbsUp={action('thumbs up')}
-    onThumbsDown={action('thumbs down')} />
-  ))
+    return (
+      <RunMode
+        card={card}
+        onThumbsUp={action('thumbs up')}
+        onThumbsDown={action('thumbs down')}
+      />
+    )
+  })
