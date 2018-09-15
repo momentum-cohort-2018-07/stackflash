@@ -61,7 +61,7 @@ a.active {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   text-align: center;
   margin: 1rem;
   padding: 1rem;
