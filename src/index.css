@@ -61,7 +61,7 @@ a.active {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   text-align: center;
   margin: 1rem;
   padding: 1rem;
@@ -72,6 +72,7 @@ a.active {
   width: 180px;
   margin: 20px 10px;
   position: relative;
+  text-align: center;
 }
 
 .Stack__fg {
@@ -281,3 +282,103 @@ a.active {
 }
 
  
+.card-outline {
+  border: 1px solid black;
+  max-width: 40%;
+  margin: 25px auto;
+  height: 65vh;
+  border-radius: 15px;
+}
+
+.card-run {
+  border: 1px solid black;
+}
+.card-front {
+  padding: 25px;
+  font-size: 20px;
+  text-align: center;
+  height: 78%;
+  clear: both;
+  overflow: auto;
+}
+
+.card-back {
+  padding: 0px 25px;
+  font-size: 20px;
+  text-align: center;
+  height: 70%;
+  clear: both;
+  overflow: auto;
+}
+
+.flip-card:hover, .thumbs-down:hover, .thumbs-up:hover {
+  font-size: 3rem;
+}
+
+.flip-card {
+  font-size: 2.6rem;
+  padding: 0px 47% 0px 44%;
+  color: black;
+}
+
+.flip-card:hover {
+  color: blue;
+  font-size: 3.4rem;
+}
+
+.thumbs-down {
+  padding: 0px 0px 0px 15%;
+  color: red;
+  font-size: 2.5rem;
+}
+
+.thumbs-up {
+  padding: 0px 9% 0px 46%;
+  color: green;
+  font-size: 2.5rem;
+}
+
+.back-arrow-container {
+  float: left;
+}
+
+.back-arrow {
+  color: gray;
+  padding: 5px 10px;
+  font-size: 2rem;
+}
+
+.back-arrow:hover {
+  color: black;
+  font-size: 2.4rem;
+}
+
+.Stack__newStack {
+  background-color: var(--color-info)
+}
+.Stack__new-stack-name {
+  font-size: 15px;
+}
+.save-new-stack {
+  margin-top: 15px;
+}
+.save-new-stack:hover {
+  background-color: var(--color-success)
+}
+.cancel-new-stack:hover {
+  background-color: var(--color-danger)
+}
+
+.Spinner {
+  -webkit-animation: spinAround 500ms infinite linear;
+  animation: spinAround 500ms infinite linear;
+  border: 3px solid var(--color-info);
+  border-radius: 290486px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+}

@@ -14,7 +14,6 @@ class RegistrationForm extends React.Component {
       errorMsg: null
     }
     this.handleSubmit = this.handleSubmit.bind(this)
-    // this.registrationView = this.registrationView.bind(this)
   }
 
   handleSubmit (event) {
