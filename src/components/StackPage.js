@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import {
+  Title,
   Modal, ModalBackground, ModalCard, ModalCardHeader, ModalCardBody, ModalCardTitle, ModalCardFooter,
   Delete,
   Button
@@ -38,10 +39,11 @@ class StackPage extends Component {
           </ModalCard>
         </Modal>
         <div className='stackNav columns'>
-          <div className='stackTitle column is-three-quarters'>{stack.title}
+          <div className='stackTitle column is-three-quarters'>
+            <Title>{stack.title} <button className='delete-stack' onClick={() => this.setState({ deleting: true })}>Delete</button></Title>
             <button className='editTitleButton'>&#x270E;
             </button>
-            <button className='cancelTitleEditButton' onClick={() => this.setState({ deleting: true })}>&#10006;</button>
+            <button className='cancelTitleEditButton'>&#10006;</button>
           </div>
           <div className='edit-runDiv column'>
             <button className='editModeButton'>Edit</button>
