@@ -39,19 +39,19 @@ class StackPage extends Component {
           <ModalCard>
             <ModalCardHeader>
               <ModalCardTitle>Delete {stack.title}?</ModalCardTitle>
-              <Delete onClick={() => this.setState({deleting: false})} />
+              <Delete onClick={() => this.setState({ deleting: false })} />
             </ModalCardHeader>
             <ModalCardBody>
               This will delete your stack FOREVER!!!
             </ModalCardBody>
             <ModalCardFooter>
               <Button isColor='danger' onClick={() => onDeleteStack(stack.id)}>Delete</Button>
-              <Button isColor='warning' onClick={() => this.setState({deleting: false})}>Cancel</Button>
+              <Button isColor='warning' onClick={() => this.setState({ deleting: false })}>Cancel</Button>
             </ModalCardFooter>
           </ModalCard>
         </Modal>
         <div className='stackNav'>
-          <div className='stackTitle'><Title>{stack.title} <button className='delete-stack' onClick={() => this.setState({deleting: true})}>Delete</button></Title>
+          <div className='stackTitle'><Title>{stack.title} <button className='delete-stack' onClick={() => this.setState({ deleting: true })}>Delete</button></Title>
             <button className='editTitleButton'>&#x270E;</button>
             <button className='cancelTitleEditButton'>&#10006;</button></div>
           <div className='edit-runDiv'><button className='editModeButton'>Edit</button><button className='runModeButton'>Run</button></div>
