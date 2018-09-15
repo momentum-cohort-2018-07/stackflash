@@ -358,6 +358,8 @@ a.active {
 }
 .Stack__new-stack-name {
   font-size: 15px;
+  font-weight: bolder;
+  max-width: 150px;
 }
 .save-new-stack {
   margin-top: 15px;
