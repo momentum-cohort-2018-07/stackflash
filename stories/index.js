@@ -29,12 +29,12 @@ storiesOf('StackPage', module)
     <StackPage stack={
       {
         id: 'a',
-        title: 'Longer Title for Flashcard Stack',
+        title: 'Title of Flashcard Stack',
         cards: [
           { id: 'a', front: 'What is the airspeed of a laden swallow?', back: 'African or European' },
           { id: 'b', front: 'What is React Storybook used for?', back: 'ssss' },
-          { id: 'b', front: 'What is React Storybook used for?', back: 'ssss' },
-          { id: 'b', front: 'What is React Storybook used for?', back: 'ssss' }
+          { id: 'c', front: 'What is React Storybook used for, in longer form?', back: 'ssss' },
+          { id: 'd', front: 'What is React Storybook used for, in 500 words or less?', back: 'ssss' }
         ]
       }
     } />

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import {
   Title,
   Modal, ModalBackground, ModalCard, ModalCardHeader, ModalCardBody, ModalCardTitle, ModalCardFooter,
@@ -7,7 +9,6 @@ import {
 } from 'bloomer'
 
 import FlashCardMini from './FlashCardMini.js'
-import PropTypes from 'prop-types'
 
 class StackPage extends Component {
   constructor (props) {
@@ -37,18 +38,27 @@ class StackPage extends Component {
             </ModalCardFooter>
           </ModalCard>
         </Modal>
-        <div className='stackNav'>
-          <div className='stackTitle'><Title>{stack.title} <button className='delete-stack' onClick={() => this.setState({ deleting: true })}>Delete</button></Title>
-            <button className='editTitleButton'>&#x270E;</button>
-            <button className='cancelTitleEditButton'>&#10006;</button></div>
-          <div className='edit-runDiv'><button className='editModeButton'>Edit</button><button className='runModeButton'>Run</button></div>
+        <div className='stackNav columns'>
+          <div className='stackTitle column is-three-quarters'>
+            <Title>{stack.title} <button className='delete-stack' onClick={() => this.setState({ deleting: true })}>Delete</button></Title>
+            <button className='editTitleButton'>&#x270E;
+            </button>
+            <button className='cancelTitleEditButton'>&#10006;</button>
+          </div>
+          <div className='edit-runDiv column'>
+            <button className='editModeButton'>Edit</button>
+            <button className='runModeButton'>Run</button>
+          </div>
         </div>
-        <div className='FlashCardMiniDiv columns'>
+        <div className='miniCardsView columns is-multiline'>
           <div className='column is-one-third'>
             {stack.cards && stack.cards.map((card) => <FlashCardMini key={card.id} card={card} />)}
           </div>
-          <div className='column is-one-third addCardButtonDiv'>
-            <button className='column is-one-third addCardButton'>+</button>
+          <div className='column is-one-third'>
+            <div className='Card__addCard'>
+              <div className='Card__addCardSymbol'>+</div>
+              <div className='Card__addCardText'>Add a card</div>
+            </div>
           </div>
         </div>
       </div>
