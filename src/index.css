@@ -153,7 +153,7 @@ a.active {
   font-size: 1rem;
 }
 
-.cardDeleteButton{
+.cardDeleteandEditButton{
   float: right;
   border: none;
   color:lightgray;
