@@ -104,6 +104,7 @@ const data = {
       .send(stackParams(stack))
       .then(res => res.body)
       .then(updatedStack => {
+        console.log(stack)
         return Object.assign({}, stack, updatedStack)
       })
   },
