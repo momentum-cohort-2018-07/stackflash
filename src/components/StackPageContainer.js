@@ -3,14 +3,18 @@ import PropTypes from 'prop-types'
 import data from '../data'
 import StackPage from './StackPage'
 import { Redirect } from 'react-router-dom'
+import update from 'immutability-helper'
 
 class StackPageContainer extends React.Component {
   constructor (props) {
     super()
     this.state = {
-      stack: {}
+      stack: {
+        title: ''
+      }
     }
     this.deleteStack = this.deleteStack.bind(this)
+    this.updateStackTitle = this.updateStackTitle.bind(this)
   }
 
   componentDidMount () {
@@ -25,12 +29,28 @@ class StackPageContainer extends React.Component {
       .then(() => this.setState({ deleted: true }))
   }
 
+  updateStackTitle (newTitle) {
+    this.setState(state => {
+      return update(state, {
+        stack: {
+          title: {
+            $set: newTitle
+          }
+        }
+      })
+    }, () => {
+      data.updateStack(this.state.stack)
+    })
+  }
+
   render () {
     // if deleted, redirect to /
     if (this.state.deleted) {
       return <Redirect to='/' />
     }
-    return <StackPage stack={this.state.stack} onDeleteStack={(id) => this.deleteStack(id)} />
+    return <StackPage stack={this.state.stack}
+      updateStackTitle={this.updateStackTitle}
+      onDeleteStack={(id) => this.deleteStack(id)} />
   }
 }
 

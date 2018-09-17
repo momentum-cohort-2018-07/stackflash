@@ -11,7 +11,6 @@ import RegistrationForm from './RegistrationForm'
 import LoginForm from './LoginForm'
 import StacksPage from './StacksPageContainer'
 import StackPageContainer from './StackPageContainer'
-import StackTitle from './StackTitle'
 
 class App extends Component {
   constructor () {

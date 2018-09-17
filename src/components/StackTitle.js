@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import data from '../data'
-import StackPage from './StackPage'
-import { Redirect } from 'react-router-dom'
-
+import { Title } from 'bloomer'
 
 class StackTitle extends Component {
   constructor (props) {
@@ -13,32 +10,54 @@ class StackTitle extends Component {
     }
   }
 
-  // updateTitle (click) {
-  //   const title = this.state.value
-  //   this.setState({
-  //     title: title
-  //   })
-  // }
-
-  isEditingFn () {
-    this.setState({ isEditing: true })
+  updateTitle (newTitle) {
+    this.setState({ title: newTitle })
   }
 
-  updateTitle (title) {
-    data.updateStack(title)
-      .then(() => this.setState({ isEditing: false }))
+  startEditing () {
+    this.setState({
+      isEditing: true,
+      title: this.props.title
+    })
+  }
+
+  stopEditing (save = true) {
+    if (save) {
+      this.props.onSaveTitle(this.state.title)
+    }
+    this.setState({
+      isEditing: false
+    })
   }
 
   render () {
+    const { title } = this.props
+    if (this.state.isEditing) {
+      return (
+        <div>
+          <input type='text' className='title'
+            onChange={event => this.updateTitle(event.target.value)}
+            value={this.state.title} />
+          <button onClick={() => this.stopEditing()}>Save</button>
+          <button onClick={() => this.stopEditing(false)}>Cancel</button>
+        </div>
+      )
+    }
     return (
-      <div>
-        <input type='text' className='title'
-          onChange={event => this.updateTitle(event.target.value)}
-          value={this.state.title} />
-        <button>Save</button>
-      </div>
+      <Title>
+        {title}
+
+        <button className='editTitleButton'
+          onClick={() => this.startEditing()}>&#x270E;
+        </button>
+      </Title>
     )
   }
+}
+
+StackTitle.propTypes = {
+  title: PropTypes.string.isRequired,
+  onSaveTitle: PropTypes.func.isRequired
 }
 
 export default StackTitle
