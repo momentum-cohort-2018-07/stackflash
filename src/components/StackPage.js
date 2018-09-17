@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import request from 'superagent'
 import {
   Title,
   Modal, ModalBackground, ModalCard, ModalCardHeader, ModalCardBody, ModalCardTitle, ModalCardFooter,
@@ -8,6 +9,27 @@ import {
 import PropTypes from 'prop-types'
 
 class FlashCardMini extends Component {
+  constructor () {
+    super()
+    this.state = {
+      clicked: null
+    }
+    this.evaluateAnswer = this.evaluateAnswer.bind(this)
+  }
+
+  evaluateAnswer (result, id) {
+    console.log('hi')
+    if (result === 'correct') {
+      this.setState({ clicked: true }, () => {
+        request.post(`https://stackflash-api.glitch.me/api/cards/${id}/correct`).end()
+      })
+    } else {
+      this.setState({ clicked: true }, () => {
+        request.post(`https://stackflash-api.glitch.me/api/cards/${id}/incorrect`).end()
+      })
+    }
+  }
+
   render () {
     return (
       <div className='FlashCardMini'>
@@ -15,6 +37,10 @@ class FlashCardMini extends Component {
           <div className='miniCard'>
             <div className='cardDeleteButtonDiv'><button className='cardDeleteButton'>&#10006;</button></div>
             {this.props.card.front}
+            <div className='correct-incorrect'>
+              <button className='fas fa-thumbs-up' onClick={() => this.evaluateAnswer('correct')} />
+              <button className='fas fa-thumbs-down' onClick={() => this.evaluateAnswer('incorrect')} />
+            </div>
           </div>
         </div>
       </div>
