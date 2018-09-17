@@ -31,10 +31,6 @@ a.active {
   display: flex;
 }
 
-.sidebar {
-  flex: 0 0 300px;
-}
-
 .main {
   flex: 0 1 100%;  
 }
@@ -384,3 +380,38 @@ a.active {
   position: relative;
   width: 1em;
 }
+
+@media only screen and (min-width: 1025px) {
+  .sidebar {
+    flex: 0 0 300px;
+  }
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .App {
+    flex-direction: column;
+  }
+  .sidebar {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 20px 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start; 
+  }
+  .sidebar-user-info {
+    margin: 0 0 10px 0;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+  }
+}
+

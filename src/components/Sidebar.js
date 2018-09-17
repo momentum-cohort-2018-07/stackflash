@@ -7,7 +7,7 @@ const Sidebar = (props) =>
   <section className='sidebar'>
     <Title><Link to='/'>StackFlash</Link></Title>
     {props.currentUser &&
-      <div>
+      <div className='sidebar-user-info'>
         <p>Hello, {props.currentUser.username}!</p>
         <Button onClick={props.onLogout}>Sign Out</Button>
       </div>

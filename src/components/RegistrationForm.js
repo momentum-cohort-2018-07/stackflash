@@ -38,7 +38,7 @@ class RegistrationForm extends React.Component {
     return (
       <BigFlashCard>
 
-        <div className='is-size-4 has-text-centered'>
+        <div className='is-size-4 has-text-centered nav-links'>
           <NavLink to='/login'>Log In</NavLink>
           &nbsp;|&nbsp;
           <NavLink to='/register'>Register</NavLink>
