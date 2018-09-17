@@ -43,6 +43,10 @@ a.active {
   padding: 1rem;
 }
 
+.attribution {
+  margin-top: 4rem;
+}
+
 .Stacks {
   display: flex;
   flex-direction: row;
@@ -380,6 +384,10 @@ a.active {
     display: flex;
     justify-content: space-between;
     margin: 0 0 20px 0;
+  }
+
+  .attribution {
+    margin-top: 0;
   }
 }
 
