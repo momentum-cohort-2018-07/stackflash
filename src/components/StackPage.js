@@ -57,7 +57,7 @@ class StackPage extends Component {
 
           <div className='miniCard Card__addCard'>
             <div className='Card__addCardSymbol'>
-              <Link to={`/stack/${stack.id}/addCard`}>+</Link>
+              <Link to={`/stacks/${stack.id}/addCard`}>+</Link>
             </div>
             <div className='Card__addCardText'>Add a card</div>
           </div>

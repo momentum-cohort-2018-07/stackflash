@@ -68,7 +68,7 @@ class App extends Component {
 
               <Route path='/stacks/:id/addCard' render={({ match }) =>
                 <Guard condition={this.state.currentUser} redirectTo='/login'>
-                  <AddCard stackId={match.params.id} />
+                  <AddCard stackID={match.params.id} />
                 </Guard>
               } />
 
