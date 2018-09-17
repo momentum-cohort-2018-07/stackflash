@@ -1,4 +1,4 @@
-:root {  
+:root {
   --color-light: hsl(0, 0%, 96%);
   --color-dark: hsl(0, 0%, 21%);
   --color-primary: hsl(171, 100%, 41%);
@@ -32,7 +32,7 @@ a.active {
 }
 
 .main {
-  flex: 0 1 100%;  
+  flex: 0 1 100%;
 }
 
 .board {
@@ -41,16 +41,6 @@ a.active {
   width: 100%;
   background-color: var(--color-light);
   padding: 1rem;
-}
-
-.BigFlashCard {
-  border: 1px solid black;
-  border-radius: 10px;
-  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.75);
-  padding: 1rem 2rem;
-  margin: 2rem auto;
-  width: 75%;
-  background-color: white;
 }
 
 .Stacks {
@@ -82,9 +72,38 @@ a.active {
   position: absolute;
 }
 
+.Stack__fg:hover {
+  background-color: var(--color-link);
+  color: var(--color-light);
+}
+
+.Stack__fg:hover a {
+  color: var(--color-light);
+}
+
 .Stack__content {
+  text-align: center;
   z-index: 999;
 }
+
+/*
+ * This code exists to vertically center text in the cards.
+ */
+
+.Stack__content {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.Stack__content .vcenter {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+}
+
+/* end vertical centering */
 
 .Stack__bg {
   width: 100%;
@@ -99,18 +118,19 @@ a.active {
   z-index: 0;
 }
 
-.Stack__fg:hover {
-  cursor: pointer;
-  background-color: var(--color-link);
-  color: var(--color-light);
+
+
+.BigFlashCard {
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.75);
+  padding: 1rem 2rem;
+  margin: 2rem auto;
+  width: 75%;
+  background-color: white;
 }
 
-.Stack__content {
-  text-align: center;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
+
 
 .Stack__addStack {
   font-size: 400%;
@@ -150,7 +170,7 @@ a.active {
   box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.5);
   background-color: white;
   padding: 10px;
-  text-align: center;    
+  text-align: center;
 }
 
 .miniCard:hover {
@@ -174,7 +194,7 @@ a.active {
 
 .edit-runDiv {
   text-align: right;
-} 
+}
 
 .editTitleButton, .cancelTitleEditButton {
   border: none;
@@ -233,7 +253,7 @@ a.active {
 }
 
 @media screen and (max-width: 699px) {
-    
+
   .edit-runDiv {
     display: block;
     margin: 0 auto;
@@ -241,7 +261,7 @@ a.active {
   }
 }
 
- 
+
 .card-outline {
   border: 1px solid black;
   max-width: 40%;
@@ -367,7 +387,7 @@ a.active {
   .sidebar {
     display: flex;
     flex-direction: column;
-    align-content: flex-start; 
+    align-content: flex-start;
   }
   .sidebar-user-info {
     margin: 0 0 10px 0;
@@ -378,4 +398,3 @@ a.active {
     flex-direction: column;
   }
 }
-

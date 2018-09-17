@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import Spinner from './Spinner'
 
@@ -12,6 +12,7 @@ class StacksPage extends React.Component {
       newStackTitle: ''
     }
   }
+
   handleClick () {
     this.setState({
       newStack: true
@@ -34,7 +35,7 @@ class StacksPage extends React.Component {
   }
 
   renderNewStackForm () {
-    return (<div className='new-stack-title-card'>
+    return (<div className='new-stack-title-card vcenter'>
       <div className='Stack__newStack'>
         <input type='text' className='Stack__new-stack-name'
           onChange={e => this.setState({ newStackTitle: e.target.value })}
@@ -49,11 +50,11 @@ class StacksPage extends React.Component {
 
   renderAddNewStack () {
     return (
-      <div className='new-stack-button'
+      <a className='new-stack-button vcenter'
         onClick={() => this.handleClick()}>
         <div className='Stack__addStack'>+</div>
         <div>Add a new stack</div>
-      </div>
+      </a>
     )
   }
 
@@ -103,18 +104,20 @@ StacksPage.propTypes = {
 
 // Why is Stack in here rather than in its own file?
 // It is only used in StacksPage, so it makes sense to put it in the same file.
-const Stack = withRouter(({ history, stack }) => {
+const Stack = ({ stack }) => {
   return (
-    <div className='Stack' onClick={() => history.push(`/stacks/${stack.id}`)}>
+    <div className='Stack'>
       <div className='Stack__fg'>
         <div className='Stack__content'>
-          <div className='Stack__title has-text-weight-bold'>{ stack.title }</div>
-          <div className='Stack__cardCount'>{ stack.cardCount } cards</div>
+          <Link to={`/stacks/${stack.id}`} className='vcenter'>
+            <div className='Stack__title has-text-weight-bold'>{ stack.title }</div>
+            <div className='Stack__cardCount'>{ stack.cardCount } cards</div>
+          </Link>
         </div>
       </div>
       <div className='Stack__bg'>&nbsp;</div>
     </div>
   )
-})
+}
 
 export default StacksPage
