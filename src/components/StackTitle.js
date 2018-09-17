@@ -37,8 +37,8 @@ class StackTitle extends Component {
   }
 }
 
-StackTitle.PropTypes = {
-  title: PropTypes.shape({
+StackTitle.propTypes = {
+  title: PropTypes.string({
     isEditing: PropTypes.bool
   })
 }

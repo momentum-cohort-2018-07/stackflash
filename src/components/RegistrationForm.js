@@ -80,13 +80,6 @@ class RegistrationForm extends React.Component {
 }
 
 RegistrationForm.propTypes = {
-  register: PropTypes.shape({
-    username: PropTypes.string,
-    password: PropTypes.string,
-    passwordConfirmation: PropTypes.string,
-    errorMsg: PropTypes.bool
-  }).isRequired,
-  onSubmit: PropTypes.func.isRequired
+  setCurrentUser: PropTypes.func.isRequired
 }
-
 export default RegistrationForm

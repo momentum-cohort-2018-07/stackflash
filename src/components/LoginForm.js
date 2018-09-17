@@ -70,12 +70,7 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-  login: PropTypes.shape({
-    username: PropTypes.string,
-    password: PropTypes.string,
-    errorMsg: PropTypes.bool
-  }).isRequired,
-  onSubmit: PropTypes.func.isRequired
+  setCurrentUser: PropTypes.func.isRequired
 }
 
 export default LoginForm

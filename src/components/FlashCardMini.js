@@ -11,8 +11,8 @@ const FlashCardMini = (props) =>
     </div>
   </div>
 
-FlashCardMini.PropTypes = {
-  cardFront: PropTypes.object
+FlashCardMini.propTypes = {
+  cardFront: PropTypes.string
 }
 
 export default FlashCardMini

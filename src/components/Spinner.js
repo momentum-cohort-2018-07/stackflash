@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const Spinner = ({ className }) => (<div className={`Spinner ${className}`} />)
 
-Spinner.PropTypes = {
-  Spinner: PropTypes.symbol
+Spinner.propTypes = {
+  className: PropTypes.string
 }
 export default Spinner
