@@ -406,7 +406,7 @@ a.active {
     align-content: flex-start; 
   }
   .sidebar-user-info {
-    margin: 10px 0;
+    margin: 0 0 10px 0;
   }
 
   .nav-links {
