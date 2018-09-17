@@ -44,22 +44,19 @@ class StackPage extends Component {
             <StackTitle
               title={stack.title}
               onSaveTitle={this.props.updateStackTitle} />
-            <button className='delete-stack' onClick={() => this.setState({ deleting: true })}>Delete</button>
+            {/* <Button className='delete-stack' onClick={() => this.setState({ deleting: true })}>Delete</Button> */}
           </div>
-          <div className='edit-runDiv column'>
-            <button className='editModeButton'>Edit</button>
-            <button className='runModeButton'>Run</button>
+          <div className='edit-runDiv column buttons has-addons'>
+            <Button className='editModeButton' isActive>Edit</Button>
+            <Button className='runModeButton'>Run</Button>
           </div>
         </div>
-        <div className='miniCardsView columns is-multiline'>
-          <div className='column is-one-third'>
-            {stack.cards && stack.cards.map((card) => <FlashCardMini key={card.id} card={card} />)}
-          </div>
-          <div className='column is-one-third'>
-            <div className='Card__addCard'>
-              <div className='Card__addCardSymbol'>+</div>
-              <div className='Card__addCardText'>Add a card</div>
-            </div>
+        <div className='miniCardsView'>
+          {stack.cards && stack.cards.map((card) => <FlashCardMini key={card.id} card={card} />)}
+
+          <div className='miniCard Card__addCard'>
+            <div className='Card__addCardSymbol'>+</div>
+            <div className='Card__addCardText'>Add a card</div>
           </div>
         </div>
       </div>
