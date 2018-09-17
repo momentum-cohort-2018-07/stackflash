@@ -9,10 +9,10 @@ import Sidebar from './Sidebar'
 import data from '../data'
 import RegistrationForm from './RegistrationForm'
 import LoginForm from './LoginForm'
-import StacksPage from './StacksPageContainer'
+import StacksPageContainer from './StacksPageContainer'
 import StackPageContainer from './StackPageContainer'
 import AddCard from './AddCard'
-import EditCard from './EditCard'
+import EditCardContainer from './EditCardContainer'
 
 class App extends Component {
   constructor () {
@@ -57,7 +57,7 @@ class App extends Component {
 
               <Route exact path='/' render={() =>
                 <Guard condition={this.state.currentUser} redirectTo='/login'>
-                  <StacksPage currentUser={this.state.currentUser} />
+                  <StacksPageContainer currentUser={this.state.currentUser} />
                 </Guard>} />
 
               <Route exact path='/stacks/:id' render={({ match }) =>
@@ -74,7 +74,7 @@ class App extends Component {
 
               <Route path='/cards/:id' render={({ match }) =>
                 <Guard condition={this.state.currentUser} redirectTo='/login'>
-                  <EditCard id={match.params.id} />
+                  <EditCardContainer id={match.params.id} />
                 </Guard>
               } />
 

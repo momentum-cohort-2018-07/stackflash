@@ -120,6 +120,11 @@ const data = {
         }
       })
   },
+  getCard (cardId) {
+    return request.get(`${apiDomain}/api/cards/${cardId}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .then(res => res.body)
+  },
   createCard (stackOrId, card) {
     let stackId = getId(stackOrId)
     return request.post(`${apiDomain}/api/stacks/${stackId}/cards`)
