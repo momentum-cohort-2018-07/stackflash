@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import StackTitle from './StackTitle'
+import Spinner from './Spinner'
 
 import {
   Modal, ModalBackground, ModalCard, ModalCardHeader, ModalCardBody, ModalCardTitle, ModalCardFooter,
@@ -19,7 +20,7 @@ class StackPage extends Component {
   }
 
   render () {
-    const { stack, onDeleteStack } = this.props
+    const { stack, isLoading, onDeleteStack } = this.props
     return (
       <div className='StackPage'>
         <Modal isActive={this.state.deleting}>
@@ -52,7 +53,11 @@ class StackPage extends Component {
           </div>
         </div>
         <div className='miniCardsView'>
-          {stack.cards && stack.cards.map((card) => <FlashCardMini key={card.id} card={card} />)}
+          {isLoading
+            ? (<div className='miniCard Card__addCard'>
+              <Spinner className='is-size-1' />
+            </div>)
+            : stack.cards && stack.cards.map((card) => <FlashCardMini key={card.id} card={card} />)}
 
           <div className='miniCard Card__addCard'>
             <div className='Card__addCardSymbol'>+</div>
@@ -70,6 +75,7 @@ StackPage.propTypes = {
     title: PropTypes.string,
     cards: PropTypes.arrayOf(PropTypes.object)
   }).isRequired,
+  isLoading: PropTypes.bool,
   updateStackTitle: PropTypes.func.isRequired,
   onDeleteStack: PropTypes.func.isRequired
 }
