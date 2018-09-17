@@ -1,27 +1,32 @@
 import React, { Component } from 'react'
-// import request from 'superagent'
+import PropTypes from 'prop-types'
+import data from '../data'
+import StackPage from './StackPage'
+import { Redirect } from 'react-router-dom'
 
-// create button
-// onClick button
 
 class StackTitle extends Component {
   constructor (props) {
     super()
     this.state = {
-      title: props.title,
       isEditing: false
     }
   }
 
-  updateTitle (click) {
-    const title = this.state.value
-    this.setState({
-      title: title
-    })
-  }
+  // updateTitle (click) {
+  //   const title = this.state.value
+  //   this.setState({
+  //     title: title
+  //   })
+  // }
 
   isEditingFn () {
     this.setState({ isEditing: true })
+  }
+
+  updateTitle (title) {
+    data.updateStack(title)
+      .then(() => this.setState({ isEditing: false }))
   }
 
   render () {

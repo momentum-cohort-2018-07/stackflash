@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import data from '../data'
 
 import {
   Title,
   Modal, ModalBackground, ModalCard, ModalCardHeader, ModalCardBody, ModalCardTitle, ModalCardFooter,
   Delete,
-  Button
+  Button,
+  Field,
+  Label,
+  Control,
+  Input
 } from 'bloomer'
 
 import FlashCardMini from './FlashCardMini.js'
@@ -14,7 +19,12 @@ class StackPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      deleting: false
+      deleting: false,
+      // Kari's code
+      isEditing: false,
+      // end Kari's
+      title: '',
+      value: ''
     }
   }
 
@@ -38,10 +48,51 @@ class StackPage extends Component {
             </ModalCardFooter>
           </ModalCard>
         </Modal>
+
+        {/* // Kari's code here */}
+        <Modal isActive={this.state.isEditing}>
+          <ModalBackground />
+          <ModalCard>
+            <ModalCardHeader>
+              {/* <ModalCardTitle>Edit {stack.title}?</ModalCardTitle> */}
+              <Delete onClick={() => this.setState({ isEditing: true })} />
+            </ModalCardHeader>
+            <ModalCardBody>
+              <Field>
+                <Control>
+                  <Input type='text'value={this.state.value} placeholder={stack.title} onChange={() => {
+ this.setState({ title: this.state.value })
+                    console.log(this) 
+}} />
+                </Control>
+                   </Field>
+             </ModalCardBody>
+            <ModalCardFooter>
+
+                      <Button isColor='success' onClick={() => {
+                function updateTitle () {
+                  console.log('!!!!')
+                  stack.title = 'Interview questions!!!'
+                }
+
+                updateTitle()
+
+                data.updateStack(stack)
+                this.setState({ isEditing: false })
+ }}>Save</Button>
+                      <Button isColor='warning' onClick={() => this.setState({ isEditing: false })}>Cancel</Button>
+                    </ModalCardFooter>
+          </ModalCard>
+        </Modal>
+
+        {/* // Kari's code ends here */}
+
         <div className='stackNav columns'>
           <div className='stackTitle column is-three-quarters'>
+
             <Title>{stack.title} <button className='delete-stack' onClick={() => this.setState({ deleting: true })}>Delete</button></Title>
-            <button className='editTitleButton'>&#x270E;
+
+            <button className='editTitleButton' onClick={() => this.setState({ isEditing: true })}>&#x270E;
             </button>
             <button className='cancelTitleEditButton'>&#10006;</button>
           </div>
