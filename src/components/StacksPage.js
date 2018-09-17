@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
-import AddNewStack from './AddStack'
 
 import Spinner from './Spinner'
 
@@ -9,7 +8,8 @@ class StacksPage extends React.Component {
   constructor () {
     super()
     this.state = {
-      newStack: false
+      newStack: false,
+      newStackTitle: ''
     }
   }
   handleClick () {
@@ -17,10 +17,44 @@ class StacksPage extends React.Component {
       newStack: true
     })
   }
+
   reset () {
     this.setState({
-      newStack: false
+      newStack: false,
+      newStackTitle: ''
     })
+  }
+
+  save () {
+    this.props.onSaveNewStack({ title: this.state.newStackTitle })
+    this.setState({
+      newStack: false,
+      newStackTitle: ''
+    })
+  }
+
+  renderNewStackForm () {
+    return (<div className='new-stack-title-card'>
+      <div className='Stack__newStack'>
+        <input type='text' className='Stack__new-stack-name'
+          onChange={e => this.setState({ newStackTitle: e.target.value })}
+          placeholder='Title' style={{ textAlign: 'center' }} />
+      </div>
+      <div className='save-new-stack'
+        onClick={() => this.save()}>Save</div>
+      <div className='cancel-new-stack'
+        onClick={() => this.reset()}>Cancel</div>
+    </div>)
+  }
+
+  renderAddNewStack () {
+    return (
+      <div className='new-stack-button'
+        onClick={() => this.handleClick()}>
+        <div className='Stack__addStack'>+</div>
+        <div>Add a new stack</div>
+      </div>
+    )
   }
 
   render () {
@@ -45,18 +79,8 @@ class StacksPage extends React.Component {
             <div className='Stack__content'>
               {
                 this.state.newStack
-                  ? <div className='new-stack-title-card'>
-                    <AddNewStack />
-                    <div className='save-new-stack'
-                      onClick={() => this.reset()}>Save</div>
-                    <div className='cancel-new-stack'
-                      onClick={() => this.reset()}>Cancel</div>
-                  </div>
-                  : <div className='new-stack-button'
-                    onClick={() => this.handleClick()}>
-                    <div className='Stack__addStack'>+</div>
-                    <div>Add a new stack</div>
-                  </div>
+                  ? this.renderNewStackForm()
+                  : this.renderAddNewStack()
               }
             </div>
           </div>

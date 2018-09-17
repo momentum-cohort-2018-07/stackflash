@@ -1,46 +1,69 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-// import request from 'superagent'
-
-// create button
-// onClick button
+import { Title } from 'bloomer'
 
 class StackTitle extends Component {
   constructor (props) {
     super()
     this.state = {
-      title: props.title,
       isEditing: false
     }
   }
 
-  updateTitle (click) {
-    const title = this.state.value
+  updateTitle (newTitle) {
+    this.setState({ title: newTitle })
+  }
+
+  startEditing () {
     this.setState({
-      title: title
+      isEditing: true,
+      title: this.props.title
     })
   }
 
-  isEditingFn () {
-    this.setState({isEditing: true})
+  stopEditing (save = true) {
+    if (save) {
+      this.props.onSaveTitle(this.state.title)
+    }
+    this.setState({
+      isEditing: false
+    })
   }
 
   render () {
+    const { title } = this.props
+    if (this.state.isEditing) {
+      return (
+        <div>
+          <input type='text' className='title'
+            onChange={event => this.updateTitle(event.target.value)}
+            value={this.state.title} />
+          <button onClick={() => this.stopEditing()}>Save</button>
+          <button onClick={() => this.stopEditing(false)}>Cancel</button>
+        </div>
+      )
+    }
     return (
-      <div>
-        <input type='text' className='title'
-          onChange={event => this.updateTitle(event.target.value)}
-          value={this.state.title} />
-        <button>Save</button>
-      </div>
+      <Title>
+        {title}
+
+        <button className='editTitleButton'
+          onClick={() => this.startEditing()}>&#x270E;
+        </button>
+      </Title>
     )
   }
 }
 
 StackTitle.propTypes = {
+<<<<<<< HEAD
   title: PropTypes.string({
     isEditing: PropTypes.bool
   })
+=======
+  title: PropTypes.string.isRequired,
+  onSaveTitle: PropTypes.func.isRequired
+>>>>>>> master
 }
 
 export default StackTitle

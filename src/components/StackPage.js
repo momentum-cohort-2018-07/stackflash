@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import StackTitle from './StackTitle'
+
 import {
-  Title,
   Modal, ModalBackground, ModalCard, ModalCardHeader, ModalCardBody, ModalCardTitle, ModalCardFooter,
   Delete,
   Button
 } from 'bloomer'
 
 import FlashCardMini from './FlashCardMini.js'
-import PropTypes from 'prop-types'
 
 class StackPage extends Component {
   constructor (props) {
@@ -37,18 +38,25 @@ class StackPage extends Component {
             </ModalCardFooter>
           </ModalCard>
         </Modal>
-        <div className='stackNav'>
-          <div className='stackTitle'><Title>{stack.title} <button className='delete-stack' onClick={() => this.setState({ deleting: true })}>Delete</button></Title>
-            <button className='editTitleButton'>&#x270E;</button>
-            <button className='cancelTitleEditButton'>&#10006;</button></div>
-          <div className='edit-runDiv'><button className='editModeButton'>Edit</button><button className='runModeButton'>Run</button></div>
-        </div>
-        <div className='FlashCardMiniDiv columns'>
-          <div className='column is-one-third'>
-            {stack.cards && stack.cards.map((card) => <FlashCardMini key={card.id} card={card} />)}
+
+        <div className='stackNav columns'>
+          <div className='stackTitle column is-three-quarters'>
+            <StackTitle
+              title={stack.title}
+              onSaveTitle={this.props.updateStackTitle} />
+            {/* <Button className='delete-stack' onClick={() => this.setState({ deleting: true })}>Delete</Button> */}
           </div>
-          <div className='column is-one-third addCardButtonDiv'>
-            <button className='column is-one-third addCardButton'>+</button>
+          <div className='edit-runDiv column buttons has-addons'>
+            <Button className='editModeButton' isActive>Edit</Button>
+            <Button className='runModeButton'>Run</Button>
+          </div>
+        </div>
+        <div className='miniCardsView'>
+          {stack.cards && stack.cards.map((card) => <FlashCardMini key={card.id} card={card} />)}
+
+          <div className='miniCard Card__addCard'>
+            <div className='Card__addCardSymbol'>+</div>
+            <div className='Card__addCardText'>Add a card</div>
           </div>
         </div>
       </div>
@@ -62,6 +70,7 @@ StackPage.propTypes = {
     title: PropTypes.string,
     cards: PropTypes.arrayOf(PropTypes.object)
   }).isRequired,
+  updateStackTitle: PropTypes.func.isRequired,
   onDeleteStack: PropTypes.func.isRequired
 }
 

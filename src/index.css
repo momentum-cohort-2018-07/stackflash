@@ -31,10 +31,6 @@ a.active {
   display: flex;
 }
 
-.sidebar {
-  flex: 0 0 300px;
-}
-
 .main {
   flex: 0 1 100%;  
 }
@@ -121,59 +117,109 @@ a.active {
   font-weight: bold;
 }
 
+.stackNav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.stackTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  /* margin-bottom: 15px; */
+  line-height: 1.5rem;
+}
+
+.miniCardsView {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
+  margin: .75rem;
+  padding: .75rem;
+}
 
 .miniCard {
-  display: inline-block;
-  border: 1px solid gray;
-  border-radius: 2px;
-  height: 125px;
-  max-width: 30%;
-  padding: 15px;
-  margin-top: 10px;
+  height: 300px;
+  width: 180px;
+  margin: 15px 7px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 8px;
+  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.5);
+  background-color: white;
+  padding: 10px;
   text-align: center;    
-  font-size: .5rem;
+}
+
+.miniCard:hover {
+  cursor: pointer;
+  background-color: var(--color-link);
+  color: var(--color-light);
+}
+
+.minicard:hover .cardDeleteButton {
+  color: var(--color-light);
+  background-color: var(--color-link);
+}
+
+.Card__content {
+  font-size: .75rem;
   line-height: .75rem;
+  font-weight: bold;
+  overflow: scroll;
 }
 
-.editTitleButtonDiv, .deleteFlashCardDiv, .edit-runDiv {
-  display: inline-block;
-  vertical-align: top;
-}
 
-.editTitleButton, .cancelTitleEditButton, .editModeButton, .runModeButton {
-  border-radius: 2px;
-}
-
-.editModeButton, .runModeButton {
-  font-size: .75rem;  
-}
+.edit-runDiv {
+  text-align: right;
+} 
 
 .editTitleButton, .cancelTitleEditButton {
   border: none;
   display: inline-block;
   font-size: 1rem;
+  background: transparent;
+  margin: 0 0 0 10px;
+  padding: 0;
+  }
+
+.editTitleButton:hover {
+  color:hsl(348, 100%, 61%);
+}
+
+.cancelTitleEditButton:hover {
+  color:hsl(348, 100%, 61%);
 }
 
 .cardDeleteButton{
-  float: right;
+  margin-bottom: 4px;
   border: none;
   color:lightgray;
   font-size: 1rem;
+  background-color: transparent;
 }
 
 .cardDeleteButton:hover {
-  color: red;
+  color:hsl(348, 100%, 61%);
   font-size: 1rem;
 }
 
-.addCardButton {
-  display: inline-block;
-  margin: 20px auto;
-  width: 30%;
-  border: 1px dotted lightgray;
-  border-radius: 2px;
+.Card__addCardSymbol {
+  font-size: 300%;
+}
+
+.Card__addCardText {
   font-size: .75rem;
-  height: 125px;
+  font-weight: 400;
+  line-height: .75rem;
+}
+
+.Card__addCard:hover {
+  cursor: pointer;
+  background-color: var(--color-link);
+  color: var(--color-light);
 }
 
 .addStack {
@@ -186,6 +232,16 @@ a.active {
   align-items: center;
 }
 
+@media screen and (max-width: 699px) {
+    
+  .edit-runDiv {
+    display: block;
+    margin: 0 auto;
+    white-space: nowrap;
+  }
+}
+
+ 
 .card-outline {
   border: 1px solid black;
   max-width: 40%;
@@ -262,6 +318,8 @@ a.active {
 }
 .Stack__new-stack-name {
   font-size: 15px;
+  font-weight: bolder;
+  max-width: 150px;
 }
 .save-new-stack {
   margin-top: 15px;
@@ -286,3 +344,38 @@ a.active {
   position: relative;
   width: 1em;
 }
+
+@media only screen and (min-width: 1025px) {
+  .sidebar {
+    flex: 0 0 300px;
+  }
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .App {
+    flex-direction: column;
+  }
+  .sidebar {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 20px 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start; 
+  }
+  .sidebar-user-info {
+    margin: 0 0 10px 0;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
