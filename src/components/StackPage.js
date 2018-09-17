@@ -20,13 +20,14 @@ class StackPage extends Component {
     super(props)
     this.state = {
       deleting: false,
-      // Kari's code
+      // Kari's
       isEditing: false,
       // end Kari's
-      title: '',
-      value: ''
+      title: ''
     }
   }
+
+  
 
   render () {
     const { stack, onDeleteStack } = this.props
@@ -49,6 +50,16 @@ class StackPage extends Component {
           </ModalCard>
         </Modal>
 
+
+
+
+
+
+
+
+
+
+
         {/* // Kari's code here */}
         <Modal isActive={this.state.isEditing}>
           <ModalBackground />
@@ -57,35 +68,48 @@ class StackPage extends Component {
               {/* <ModalCardTitle>Edit {stack.title}?</ModalCardTitle> */}
               <Delete onClick={() => this.setState({ isEditing: true })} />
             </ModalCardHeader>
-            <ModalCardBody>
-              <Field>
-                <Control>
-                  <Input type='text'value={this.state.value} placeholder={stack.title} onChange={() => {
- this.setState({ title: this.state.value })
-                    console.log(this) 
-}} />
-                </Control>
-                   </Field>
-             </ModalCardBody>
-            <ModalCardFooter>
+             <ModalCardBody>
+                   <Field>
+                    <Control>
+                      <Input type='text'placeholder={stack.title} onChange={() => { this.setState({ title: 'test!!!' })
+                    console.log(this.state)}}/>
+                   </Control>
+              </Field>
+            </ModalCardBody>
+                    <ModalCardFooter>
 
-                      <Button isColor='success' onClick={() => {
-                function updateTitle () {
+              <Button isColor='success' onClick={() => {
+
+                function updateTitle() {
                   console.log('!!!!')
-                  stack.title = 'Interview questions!!!'
-                }
-
-                updateTitle()
-
-                data.updateStack(stack)
-                this.setState({ isEditing: false })
- }}>Save</Button>
-                      <Button isColor='warning' onClick={() => this.setState({ isEditing: false })}>Cancel</Button>
-                    </ModalCardFooter>
-          </ModalCard>
+                  stack.title = 'Interview questions!!!' 
+        } 
+        
+        updateTitle(), 
+        
+        data.updateStack(stack)
+        this.setState({ isEditing: false })}}>Save</Button>
+              <Button isColor='warning' onClick={() => this.setState({ isEditing: false })}>Cancel</Button>
+            </ModalCardFooter>
+                  </ModalCard>
         </Modal>
 
+        
+
         {/* // Kari's code ends here */}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div className='stackNav columns'>
           <div className='stackTitle column is-three-quarters'>
