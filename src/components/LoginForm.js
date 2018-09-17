@@ -3,6 +3,7 @@ import { Field, Label, Control, Input, Button, Notification } from 'bloomer'
 import { NavLink } from 'react-router-dom'
 import data from '../data'
 import BigFlashCard from './BigFlashCard'
+import PropTypes from 'prop-types'
 
 class LoginForm extends React.Component {
   constructor (props) {
@@ -66,6 +67,10 @@ class LoginForm extends React.Component {
       </BigFlashCard>
     )
   }
+}
+
+LoginForm.propTypes = {
+  setCurrentUser: PropTypes.func.isRequired
 }
 
 export default LoginForm
