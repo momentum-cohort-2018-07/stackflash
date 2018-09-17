@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class AddNewStack extends Component {
   constructor () {
@@ -19,6 +20,10 @@ class AddNewStack extends Component {
   
     )
   }
+}
+
+AddNewStack.PropTypes = {
+  info: PropTypes.string
 }
 
 export default AddNewStack

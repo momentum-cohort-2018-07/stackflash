@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const FlashCardMini = (props) =>
   <div className='FlashCardMini'>
@@ -9,5 +10,9 @@ const FlashCardMini = (props) =>
       </div>
     </div>
   </div>
+
+FlashCardMini.PropTypes = {
+  cardFront: PropTypes.object
+}
 
 export default FlashCardMini
