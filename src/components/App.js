@@ -11,6 +11,8 @@ import RegistrationForm from './RegistrationForm'
 import LoginForm from './LoginForm'
 import StacksPage from './StacksPageContainer'
 import StackPageContainer from './StackPageContainer'
+import AddCard from './AddCard'
+import EditCard from './EditCard'
 
 class App extends Component {
   constructor () {
@@ -52,15 +54,30 @@ class App extends Component {
           <Sidebar currentUser={currentUser} onLogout={this.logout} />
           <main className='main'>
             <div className='board'>
+
               <Route exact path='/' render={() =>
                 <Guard condition={this.state.currentUser} redirectTo='/login'>
                   <StacksPage currentUser={this.state.currentUser} />
                 </Guard>} />
-              <Route path='/stacks/:id' render={({ match }) =>
+
+              <Route exact path='/stacks/:id' render={({ match }) =>
                 <Guard condition={this.state.currentUser} redirectTo='/login'>
                   <StackPageContainer id={match.params.id} />
                 </Guard>
               } />
+
+              <Route path='/stacks/:id/addCard' render={({ match }) =>
+                <Guard condition={this.state.currentUser} redirectTo='/login'>
+                  <AddCard stackId={match.params.id} />
+                </Guard>
+              } />
+
+              <Route path='/cards/:id' render={({ match }) =>
+                <Guard condition={this.state.currentUser} redirectTo='/login'>
+                  <EditCard id={match.params.id} />
+                </Guard>
+              } />
+
               <Route path='/register' render={() =>
                 <Guard condition={!this.state.currentUser} redirectTo='/'>
                   <RegistrationForm setCurrentUser={this.setCurrentUser} />

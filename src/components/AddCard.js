@@ -13,11 +13,9 @@ class AddCard extends Component {
   }
   handleSubmit (e) {
     e.preventDefault()
-    const { stackID, addCard } = this.props
+    const { stackID } = this.props
     let card = this.state
-    console.log(addCard, 'add card')
     data.createCard(stackID, card)
-    // this.setState(state => ({ addCard: false }))
   }
   render () {
     const { answer, question } = this.state

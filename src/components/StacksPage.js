@@ -2,26 +2,92 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 
+import Spinner from './Spinner'
+
 class StacksPage extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      newStack: false,
+      newStackTitle: ''
+    }
+  }
+  handleClick () {
+    this.setState({
+      newStack: true
+    })
+  }
+
+  reset () {
+    this.setState({
+      newStack: false,
+      newStackTitle: ''
+    })
+  }
+
+  save () {
+    this.props.onSaveNewStack({ title: this.state.newStackTitle })
+    this.setState({
+      newStack: false,
+      newStackTitle: ''
+    })
+  }
+
+  renderNewStackForm () {
+    return (<div className='new-stack-title-card'>
+      <div className='Stack__newStack'>
+        <input type='text' className='Stack__new-stack-name'
+          onChange={e => this.setState({ newStackTitle: e.target.value })}
+          placeholder='Title' style={{ textAlign: 'center' }} />
+      </div>
+      <div className='save-new-stack'
+        onClick={() => this.save()}>Save</div>
+      <div className='cancel-new-stack'
+        onClick={() => this.reset()}>Cancel</div>
+    </div>)
+  }
+
+  renderAddNewStack () {
+    return (
+      <div className='new-stack-button'
+        onClick={() => this.handleClick()}>
+        <div className='Stack__addStack'>+</div>
+        <div>Add a new stack</div>
+      </div>
+    )
+  }
+
   render () {
-    if (this.props.stacks) {
-      return (
-        <div className='Stacks'>
-          {this.props.stacks.map((stack) => <Stack key={stack.id} stack={stack} />)}
-          <div className='Stack'>
+    const { stacks, isLoading } = this.props
+
+    return (
+      <div className='Stacks'>
+        {isLoading
+          ? <div className='Stack'>
             <div className='Stack__fg'>
               <div className='Stack__content'>
-                <div className='Stack__addStack'>+</div>
-                <div>Add a new stack</div>
+                <Spinner className='is-size-1' />
               </div>
             </div>
             <div className='Stack__bg'>&nbsp;</div>
           </div>
+          : stacks.map((stack) => <Stack key={stack.id} stack={stack} />)
+        }
+
+        <div className='Stack'>
+          <div className='Stack__fg'>
+            <div className='Stack__content'>
+              {
+                this.state.newStack
+                  ? this.renderNewStackForm()
+                  : this.renderAddNewStack()
+              }
+            </div>
+          </div>
+          <div className='Stack__bg'>&nbsp;</div>
         </div>
-      )
-    } else {
-      return null
-    }
+      </div>
+    )
   }
 }
 
@@ -31,7 +97,8 @@ const stackType = PropTypes.shape({
 })
 
 StacksPage.propTypes = {
-  stacks: PropTypes.arrayOf(stackType)
+  stacks: PropTypes.arrayOf(stackType),
+  isLoading: PropTypes.bool
 }
 
 // Why is Stack in here rather than in its own file?

@@ -3,6 +3,7 @@ import { Field, Button, Control, Notification, Input, Label } from 'bloomer'
 import { NavLink } from 'react-router-dom'
 import BigFlashCard from './BigFlashCard'
 import data from '../data'
+import PropTypes from 'prop-types'
 
 class RegistrationForm extends React.Component {
   constructor () {
@@ -14,7 +15,6 @@ class RegistrationForm extends React.Component {
       errorMsg: null
     }
     this.handleSubmit = this.handleSubmit.bind(this)
-    // this.registrationView = this.registrationView.bind(this)
   }
 
   handleSubmit (event) {
@@ -39,7 +39,7 @@ class RegistrationForm extends React.Component {
     return (
       <BigFlashCard>
 
-        <div className='is-size-4 has-text-centered'>
+        <div className='is-size-4 has-text-centered nav-links'>
           <NavLink to='/login'>Log In</NavLink>
           &nbsp;|&nbsp;
           <NavLink to='/register'>Register</NavLink>
@@ -79,4 +79,7 @@ class RegistrationForm extends React.Component {
   }
 }
 
+RegistrationForm.propTypes = {
+  setCurrentUser: PropTypes.func.isRequired
+}
 export default RegistrationForm

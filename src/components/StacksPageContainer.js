@@ -7,8 +7,11 @@ class StacksPageContainer extends React.Component {
   constructor () {
     super()
     this.state = {
-      stacks: []
+      stacks: [],
+      isLoading: true
     }
+
+    this.saveNewStack = this.saveNewStack.bind(this)
   }
 
   componentDidMount () {
@@ -26,14 +29,24 @@ class StacksPageContainer extends React.Component {
     if (currentUser && currentUser.token) {
       data.setUserToken(currentUser.token)
       data.getStacks().then(stacks => this.setState({
-        stacks
+        stacks,
+        isLoading: false
       }))
     }
   }
 
+  saveNewStack (stack) {
+    return data.createStack(stack)
+      .then(newStack => {
+        this.setState(state => ({
+          stacks: state.stacks.concat(newStack)
+        }))
+      })
+  }
+
   render () {
     return (
-      <StacksPage stacks={this.state.stacks} />
+      <StacksPage stacks={this.state.stacks} isLoading={this.state.isLoading} onSaveNewStack={this.saveNewStack} />
     )
   }
 }
