@@ -56,14 +56,8 @@ class StackTitle extends Component {
 }
 
 StackTitle.propTypes = {
-<<<<<<< HEAD
-  title: PropTypes.string({
-    isEditing: PropTypes.bool
-  })
-=======
   title: PropTypes.string.isRequired,
   onSaveTitle: PropTypes.func.isRequired
->>>>>>> master
 }
 
 export default StackTitle
