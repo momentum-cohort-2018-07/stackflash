@@ -134,15 +134,15 @@ a.active {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   text-align: center;
   margin: .75rem;
   padding: .75rem;
 }
 
 .miniCard {
-  height: 150px;
-  width: 100px;
+  height: 300px;
+  width: 180px;
   margin: 15px 7px;
   padding: 10px;
   border: 1px solid black;
@@ -173,30 +173,8 @@ a.active {
 
 
 .edit-runDiv {
-  white-space: nowrap;
-  margin: 0 auto;
+  text-align: right;
 } 
-
-.editModeButton {
-  border-radius: 4px 0 0 4px;
-  border-right: none;
-  font-size: .75rem;  
-}
-
-.editModeButton:hover {
-  color: white;
-  background-color: hsl(217, 71%, 53%);
-}
-
-.runModeButton {
-  border-radius: 0 4px 4px 0;
-  font-size: .75rem;  
-}
-
-.runModeButton:hover {
-  color: white;
-  background-color: hsl(217, 71%, 53%);
-}
 
 .editTitleButton, .cancelTitleEditButton {
   border: none;
@@ -228,19 +206,6 @@ a.active {
   font-size: 1rem;
 }
 
-.Card__addCard {
-  height: 150px;
-  width: 100px;
-  margin: 15px 7px;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 8px;
-  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.5);
-  background-color: white;
-  text-align: center; 
-  font-weight: bold;
-}
-
 .Card__addCardSymbol {
   font-size: 300%;
 }
@@ -249,7 +214,6 @@ a.active {
   font-size: .75rem;
   font-weight: 400;
   line-height: .75rem;
-  overflow: scroll;
 }
 
 .Card__addCard:hover {
