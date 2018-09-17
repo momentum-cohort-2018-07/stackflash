@@ -42,7 +42,7 @@ class RunMode extends React.Component {
   }
 }
 
-RunMode.PropTypes = {
+RunMode.propTypes = {
   card: PropTypes.shape({
     front: PropTypes.string,
     back: PropTypes.string
