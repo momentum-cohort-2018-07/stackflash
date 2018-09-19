@@ -1,15 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Delete } from 'bloomer'
 
-const FlashCardMini = (props) =>
+import { truncateString } from '../util'
+
+const FlashCardMini = (props) => (
   <div className='FlashCardMini'>
-    <div className='cardFront'>
-      <div className='miniCard'>
-        <div className='cardDeleteButtonDiv'><button className='cardDeleteButton'>&#10006;</button></div>
-        {props.card.front}
-      </div>
+    <div className='FlashCardMini__delete'>
+      <Delete />
     </div>
+    {truncateString(props.card.front, 180, 'right', '...', 'true')}
   </div>
+)
 
 FlashCardMini.propTypes = {
   cardFront: PropTypes.string

@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import StackTitle from './StackTitle'
-import Spinner from './Spinner'
-
 import { Button } from 'bloomer'
 
-import FlashCardMini from './FlashCardMini.js'
+import StackTitle from './StackTitle'
+import Spinner from './Spinner'
+import FlashCardMini from './FlashCardMini'
 
 class StackPage extends Component {
   constructor (props) {
@@ -37,7 +36,7 @@ class StackPage extends Component {
             </div>)
             : stack.cards && stack.cards.map((card) => <FlashCardMini key={card.id} card={card} />)}
 
-          <div className='miniCard Card__addCard'>
+          <div className='FlashCardMini Card__addCard'>
             <div className='Card__addCardSymbol'>+</div>
             <div className='Card__addCardText'>Add a card</div>
           </div>

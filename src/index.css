@@ -143,6 +143,41 @@ a.active {
   display: inline-block;
 }
 
+.FlashCardMini {
+  position: relative;
+  height: 300px;
+  width: 180px;
+  margin: 15px 7px;
+  border: 1px solid black;
+  border-radius: 8px;
+  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.5);
+  background-color: white;
+  padding: 30px 10px;
+  text-align: center;
+}
+
+.FlashCardMini:hover {
+  cursor: pointer;
+  background-color: var(--color-link);
+  color: var(--color-light);
+}
+
+.FlashCardMini:hover .FlashCardMini__delete {
+  display: block;
+  color: var(--color-light);
+  background-color: var(--color-link);
+}
+
+.FlashCardMini__delete {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+
+
+
 /* HERE BE DRAGONS */
 
 .BigFlashCard {
@@ -182,30 +217,6 @@ a.active {
   padding: .75rem;
 }
 
-.miniCard {
-  height: 300px;
-  width: 180px;
-  margin: 15px 7px;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 8px;
-  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.5);
-  background-color: white;
-  padding: 10px;
-  text-align: center;
-}
-
-.miniCard:hover {
-  cursor: pointer;
-  background-color: var(--color-link);
-  color: var(--color-light);
-}
-
-.minicard:hover .cardDeleteButton {
-  color: var(--color-light);
-  background-color: var(--color-link);
-}
-
 .Card__content {
   font-size: .75rem;
   line-height: .75rem;
@@ -233,19 +244,6 @@ a.active {
 
 .cancelTitleEditButton:hover {
   color:hsl(348, 100%, 61%);
-}
-
-.cardDeleteButton{
-  margin-bottom: 4px;
-  border: none;
-  color:lightgray;
-  font-size: 1rem;
-  background-color: transparent;
-}
-
-.cardDeleteButton:hover {
-  color:hsl(348, 100%, 61%);
-  font-size: 1rem;
 }
 
 .Card__addCardSymbol {
