@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Title } from 'bloomer'
+import { Title, Input, Field, Button, Control, Icon } from 'bloomer'
 
 class StackTitle extends Component {
   constructor (props) {
@@ -35,21 +35,20 @@ class StackTitle extends Component {
     if (this.state.isEditing) {
       return (
         <div>
-          <input type='text' className='title'
-            onChange={event => this.updateTitle(event.target.value)}
-            value={this.state.title} />
-          <button onClick={() => this.stopEditing()}>Save</button>
-          <button onClick={() => this.stopEditing(false)}>Cancel</button>
+          <Field hasAddons>
+            <Control isExpanded><Input isFullWidth isSize='large' type='text' className='StackTitle__input'
+              onChange={event => this.updateTitle(event.target.value)}
+              value={this.state.title} /></Control>
+            <Control><Button isSize='large' isColor='primary' onClick={() => this.stopEditing()}>Save</Button></Control>
+            <Control><Button isSize='large' isColor='warning' onClick={() => this.stopEditing(false)}>Cancel</Button></Control>
+          </Field>
         </div>
       )
     }
     return (
       <Title>
-        {title}
-
-        <button className='editTitleButton'
-          onClick={() => this.startEditing()}>&#x270E;
-        </button>
+        {title + ' '}
+        <a onClick={() => this.startEditing()}><Icon isSize='large' className='fas fa-edit' /></a>
       </Title>
     )
   }

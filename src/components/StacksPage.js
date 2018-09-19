@@ -52,9 +52,9 @@ class StacksPage extends React.Component {
                 placeholder='Title' style={{ textAlign: 'center' }} />
             </Field>
             <Field>
-              <div class='buttons has-addons' style={{ justifyContent: 'center' }}>
+              <div className='buttons has-addons' style={{ justifyContent: 'center' }}>
                 <Button isColor='primary' onClick={() => this.save()}>Save</Button>
-                <Button onClick={() => this.reset()}>Cancel</Button>
+                <Button isColor='warning' onClick={() => this.reset()}>Cancel</Button>
               </div>
             </Field>
           </div>
