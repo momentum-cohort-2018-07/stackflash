@@ -15,10 +15,12 @@ function cardParams (card) {
 }
 
 function getId (objOrId) {
-  if (objOrId.id) {
-    return objOrId.id
+  if (typeof objOrId === 'undefined') {
+    return undefined
   } else if (typeof objOrId === 'string') {
     return objOrId
+  } else if (objOrId.id) {
+    return objOrId.id
   } else {
     return null
   }
@@ -119,6 +121,11 @@ const data = {
           return false
         }
       })
+  },
+  getCard (cardId) {
+    return request.get(`${apiDomain}/api/cards/${cardId}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .then(res => res.body)
   },
   createCard (stackOrId, card) {
     let stackId = getId(stackOrId)

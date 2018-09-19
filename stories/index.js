@@ -7,6 +7,7 @@ import LoginForm from '../src/components/LoginForm'
 import StackTitle from '../src/components/StackTitle'
 import StackPage from '../src/components/StackPage'
 import RunMode from '../src/components/RunMode'
+import EditCard from '../src/components/EditCard'
 
 import 'bulma/css/bulma.css'
 import '@fortawesome/fontawesome-free/css/all.css'
@@ -52,4 +53,17 @@ storiesOf('RunMode', module)
       }
       onThumbsUp={action('thumbs up')}
       onThumbsDown={action('thumbs down')} />
+  ))
+
+storiesOf('EditCard', module)
+  .add('default', () => (
+    <EditCard
+      card={
+        {
+          id: 'a',
+          front: 'Parrish street erwin road bulla pvlig bulla greeal de exprimare hipster, alt-country broad street subaru edict papal food truck',
+          back: 'Arm wrestling food truck rodeo lakewood maschio music on the lawn coffee'
+        }
+      }
+      onSave={action('save')} />
   ))

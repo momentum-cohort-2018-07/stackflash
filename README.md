@@ -22,7 +22,7 @@ yarn start
 
 ## Setting up your own instance of the API
 
-If you want to use your own instance of the API for development -- a very good idea -- then you can! 
+If you want to use your own instance of the API for development -- a very good idea -- then you can!
 
 1. Go to https://glitch.com/edit/#!/stackflash-api. Click the "Remix" button, as seen below:
 
@@ -33,5 +33,7 @@ If you want to use your own instance of the API for development -- a very good i
 3. Edit your `.env` file to have the URL of your API instance. It should look like this:
 
 ```
-REACT_APP_API_DOMAIN=https://my-own-stackflash-api.glitch.me
+REACT_APP_API_DOMAIN=https://tall-bay.glitch.me/
 ```
+
+You will need to restart your dev server if it is currently running.

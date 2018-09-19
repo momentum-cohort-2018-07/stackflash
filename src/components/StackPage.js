@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'bloomer'
+import { Link } from 'react-router-dom'
 
 import StackTitle from './StackTitle'
 import Spinner from './Spinner'
@@ -37,7 +38,9 @@ class StackPage extends Component {
             : stack.cards && stack.cards.map((card) => <FlashCardMini key={card.id} card={card} />)}
 
           <div className='FlashCardMini Card__addCard'>
-            <div className='Card__addCardSymbol'>+</div>
+            <div className='Card__addCardSymbol'>
+              <Link to={`/stacks/${stack.id}/addCard`}>+</Link>
+            </div>
             <div className='Card__addCardText'>Add a card</div>
           </div>
         </div>

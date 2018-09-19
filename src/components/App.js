@@ -11,6 +11,8 @@ import RegistrationForm from './RegistrationForm'
 import LoginForm from './LoginForm'
 import StacksPageContainer from './StacksPageContainer'
 import StackPageContainer from './StackPageContainer'
+import AddCard from './AddCard'
+import EditCardContainer from './EditCardContainer'
 
 class App extends Component {
   constructor () {
@@ -58,9 +60,21 @@ class App extends Component {
                   <StacksPageContainer currentUser={this.state.currentUser} />
                 </Guard>} />
 
-              <Route path='/stacks/:id' render={({ match }) =>
+              <Route exact path='/stacks/:id' render={({ match }) =>
                 <Guard condition={this.state.currentUser} redirectTo='/login'>
                   <StackPageContainer id={match.params.id} />
+                </Guard>
+              } />
+
+              <Route path='/stacks/:id/addCard' render={({ match }) =>
+                <Guard condition={this.state.currentUser} redirectTo='/login'>
+                  <AddCard stackID={match.params.id} />
+                </Guard>
+              } />
+
+              <Route path='/cards/:id' render={({ match }) =>
+                <Guard condition={this.state.currentUser} redirectTo='/login'>
+                  <EditCardContainer id={match.params.id} />
                 </Guard>
               } />
 
