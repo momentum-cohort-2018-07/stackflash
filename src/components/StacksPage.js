@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Field, Button } from 'bloomer'
 import { Link } from 'react-router-dom'
 
 import Spinner from './Spinner'
@@ -35,26 +36,38 @@ class StacksPage extends React.Component {
   }
 
   renderNewStackForm () {
-    return (<div className='new-stack-title-card vcenter'>
-      <div className='Stack__newStack'>
-        <input type='text' className='Stack__new-stack-name'
-          onChange={e => this.setState({ newStackTitle: e.target.value })}
-          placeholder='Title' style={{ textAlign: 'center' }} />
+    return (
+      <div className='Stack__fg--no-hover'>
+        <div className='Stack__content'>
+          <div className='vcenter'>
+            <Field>
+              <input type='text' className='Stack__new-stack-name'
+                onChange={e => this.setState({ newStackTitle: e.target.value })}
+                placeholder='Title' style={{ textAlign: 'center' }} />
+            </Field>
+            <Field>
+              <div class='buttons has-addons' style={{ justifyContent: 'center' }}>
+                <Button isColor='primary' onClick={() => this.save()}>Save</Button>
+                <Button onClick={() => this.reset()}>Cancel</Button>
+              </div>
+            </Field>
+          </div>
+        </div>
       </div>
-      <div className='save-new-stack'
-        onClick={() => this.save()}>Save</div>
-      <div className='cancel-new-stack'
-        onClick={() => this.reset()}>Cancel</div>
-    </div>)
+    )
   }
 
   renderAddNewStack () {
     return (
-      <a className='new-stack-button vcenter'
-        onClick={() => this.handleClick()}>
-        <div className='Stack__addStack'>+</div>
-        <div>Add a new stack</div>
-      </a>
+      <div className='Stack__fg'>
+        <div className='Stack__content'>
+          <a className='vcenter'
+            onClick={() => this.handleClick()}>
+            <div className='Stack__addStack'>+</div>
+            <div>Add a new stack</div>
+          </a>
+        </div>
+      </div>
     )
   }
 
@@ -76,15 +89,11 @@ class StacksPage extends React.Component {
         }
 
         <div className='Stack'>
-          <div className='Stack__fg'>
-            <div className='Stack__content'>
-              {
-                this.state.newStack
-                  ? this.renderNewStackForm()
-                  : this.renderAddNewStack()
-              }
-            </div>
-          </div>
+          {
+            this.state.newStack
+              ? this.renderNewStackForm()
+              : this.renderAddNewStack()
+          }
           <div className='Stack__bg'>&nbsp;</div>
         </div>
       </div>

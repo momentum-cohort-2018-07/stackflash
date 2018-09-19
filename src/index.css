@@ -65,7 +65,7 @@ a.active {
   text-align: center;
 }
 
-.Stack__fg {
+.Stack__fg, .Stack__fg--no-hover {
   width: 100%;
   height: 300px;
   border: 1px solid black;
@@ -122,7 +122,19 @@ a.active {
   z-index: 0;
 }
 
+.Stack__addStack {
+  font-size: 400%;
+  font-weight: bold;
+}
 
+.Stack__new-stack-name {
+  font-size: 1.25rem;
+  max-width: 150px;
+}
+
+
+
+/* HERE BE DRAGONS */
 
 .BigFlashCard {
   border: 1px solid black;
@@ -136,10 +148,7 @@ a.active {
 
 
 
-.Stack__addStack {
-  font-size: 400%;
-  font-weight: bold;
-}
+
 
 .stackNav {
   display: flex;
@@ -337,14 +346,8 @@ a.active {
   font-size: 2.4rem;
 }
 
-.Stack__newStack {
-  background-color: var(--color-info)
-}
-.Stack__new-stack-name {
-  font-size: 15px;
-  font-weight: bolder;
-  max-width: 150px;
-}
+
+
 .save-new-stack {
   margin-top: 15px;
 }
