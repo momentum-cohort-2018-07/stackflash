@@ -3,11 +3,7 @@ import PropTypes from 'prop-types'
 import StackTitle from './StackTitle'
 import Spinner from './Spinner'
 
-import {
-  Modal, ModalBackground, ModalCard, ModalCardHeader, ModalCardBody, ModalCardTitle, ModalCardFooter,
-  Delete,
-  Button
-} from 'bloomer'
+import { Button } from 'bloomer'
 
 import FlashCardMini from './FlashCardMini.js'
 
@@ -20,32 +16,14 @@ class StackPage extends Component {
   }
 
   render () {
-    const { stack, isLoading, onDeleteStack } = this.props
+    const { stack, isLoading } = this.props
     return (
       <div className='StackPage'>
-        <Modal isActive={this.state.deleting}>
-          <ModalBackground />
-          <ModalCard>
-            <ModalCardHeader>
-              <ModalCardTitle>Delete {stack.title}?</ModalCardTitle>
-              <Delete onClick={() => this.setState({ deleting: false })} />
-            </ModalCardHeader>
-            <ModalCardBody>
-              This will delete your stack FOREVER!!!
-            </ModalCardBody>
-            <ModalCardFooter>
-              <Button isColor='danger' onClick={() => onDeleteStack(stack.id)}>Delete</Button>
-              <Button isColor='warning' onClick={() => this.setState({ deleting: false })}>Cancel</Button>
-            </ModalCardFooter>
-          </ModalCard>
-        </Modal>
-
         <div className='stackNav columns'>
           <div className='stackTitle column is-three-quarters'>
             <StackTitle
               title={stack.title}
               onSaveTitle={this.props.updateStackTitle} />
-            {/* <Button className='delete-stack' onClick={() => this.setState({ deleting: true })}>Delete</Button> */}
           </div>
           <div className='edit-runDiv column buttons has-addons'>
             <Button className='editModeButton' isActive>Edit</Button>
@@ -76,8 +54,7 @@ StackPage.propTypes = {
     cards: PropTypes.arrayOf(PropTypes.object)
   }).isRequired,
   isLoading: PropTypes.bool,
-  updateStackTitle: PropTypes.func.isRequired,
-  onDeleteStack: PropTypes.func.isRequired
+  updateStackTitle: PropTypes.func.isRequired
 }
 
 export default StackPage

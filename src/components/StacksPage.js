@@ -1,7 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Field, Button } from 'bloomer'
 import { Link } from 'react-router-dom'
+import {
+  Modal, ModalBackground, ModalCard, ModalCardHeader, ModalCardBody, ModalCardTitle, ModalCardFooter,
+  Delete,
+  Field,
+  Button
+} from 'bloomer'
 
 import Spinner from './Spinner'
 
@@ -10,7 +15,8 @@ class StacksPage extends React.Component {
     super()
     this.state = {
       newStack: false,
-      newStackTitle: ''
+      newStackTitle: '',
+      deletingStack: null
     }
   }
 
@@ -71,8 +77,15 @@ class StacksPage extends React.Component {
     )
   }
 
+  deleteStack (id) {
+    this.props.deleteStack(id).then(() => {
+      this.setState({ deletingStack: null })
+    })
+  }
+
   render () {
     const { stacks, isLoading } = this.props
+    const { deletingStack } = this.state
 
     return (
       <div className='Stacks'>
@@ -85,7 +98,9 @@ class StacksPage extends React.Component {
             </div>
             <div className='Stack__bg'>&nbsp;</div>
           </div>
-          : stacks.map((stack) => <Stack key={stack.id} stack={stack} />)
+          : stacks.map((stack) =>
+            <Stack key={stack.id} stack={stack} onDelete={() => this.setState({ deletingStack: stack })} />
+          )
         }
 
         <div className='Stack'>
@@ -96,6 +111,22 @@ class StacksPage extends React.Component {
           }
           <div className='Stack__bg'>&nbsp;</div>
         </div>
+        <Modal isActive={deletingStack}>
+          <ModalBackground />
+          <ModalCard>
+            <ModalCardHeader>
+              <ModalCardTitle>Delete {deletingStack && deletingStack.title}?</ModalCardTitle>
+              <Delete onClick={() => this.setState({ deletingStack: null })} />
+            </ModalCardHeader>
+            <ModalCardBody>
+              This will delete your stack FOREVER!!!
+            </ModalCardBody>
+            <ModalCardFooter>
+              <Button isColor='danger' onClick={() => this.deleteStack(deletingStack.id)}>Delete</Button>
+              <Button isColor='warning' onClick={() => this.setState({ deletingStack: null })}>Cancel</Button>
+            </ModalCardFooter>
+          </ModalCard>
+        </Modal>
       </div>
     )
   }
@@ -108,16 +139,20 @@ const stackType = PropTypes.shape({
 
 StacksPage.propTypes = {
   stacks: PropTypes.arrayOf(stackType),
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
+  deleteStack: PropTypes.func.isRequired
 }
 
 // Why is Stack in here rather than in its own file?
 // It is only used in StacksPage, so it makes sense to put it in the same file.
-const Stack = ({ stack }) => {
+const Stack = ({ stack, onDelete }) => {
   return (
     <div className='Stack'>
       <div className='Stack__fg'>
         <div className='Stack__content'>
+          <a className='Stack__delete' onClick={onDelete}>
+            <Delete />
+          </a>
           <Link to={`/stacks/${stack.id}`} className='vcenter'>
             <div className='Stack__title has-text-weight-bold'>{ stack.title }</div>
             <div className='Stack__cardCount'>{ stack.cardCount } cards</div>

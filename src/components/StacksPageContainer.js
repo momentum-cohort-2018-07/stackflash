@@ -12,6 +12,7 @@ class StacksPageContainer extends React.Component {
     }
 
     this.saveNewStack = this.saveNewStack.bind(this)
+    this.deleteStack = this.deleteStack.bind(this)
   }
 
   componentDidMount () {
@@ -44,9 +45,21 @@ class StacksPageContainer extends React.Component {
       })
   }
 
+  deleteStack (id) {
+    return data.deleteStack(id).then(() => {
+      this.setState(state => {
+        const remainingStacks = state.stacks.filter(stack => stack.id !== id)
+        return { stacks: remainingStacks }
+      })
+    })
+  }
+
   render () {
     return (
-      <StacksPage stacks={this.state.stacks} isLoading={this.state.isLoading} onSaveNewStack={this.saveNewStack} />
+      <StacksPage stacks={this.state.stacks}
+        isLoading={this.state.isLoading}
+        onSaveNewStack={this.saveNewStack}
+        deleteStack={this.deleteStack} />
     )
   }
 }
