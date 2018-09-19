@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import { Title, Button } from 'bloomer'
 import { Link } from 'react-router-dom'
 
-const Sidebar = (props) =>
+const Sidebar = (props) => (
   <section className='sidebar'>
     <Title><Link to='/'>StackFlash</Link></Title>
     {props.currentUser &&
       <div className='sidebar-user-info'>
-        <p>Hello, {props.currentUser.username}!</p>
-        <Button onClick={props.onLogout}>Sign Out</Button>
+        <p>Logged in as {props.currentUser.username}.</p>
+        <p><Button onClick={props.onLogout}>Log out</Button></p>
       </div>
     }
     <div className='attribution'>
@@ -21,6 +21,7 @@ const Sidebar = (props) =>
       </p>
     </div>
   </section>
+)
 
 Sidebar.propTypes = {
   currentUser: PropTypes.shape({

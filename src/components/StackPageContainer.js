@@ -11,22 +11,15 @@ class StackPageContainer extends React.Component {
     this.state = {
       stack: {
         title: ''
-      }
+      },
+      isLoading: true
     }
-    this.deleteStack = this.deleteStack.bind(this)
     this.updateStackTitle = this.updateStackTitle.bind(this)
   }
 
   componentDidMount () {
     data.getStack(this.props.id)
-      .then(stack => this.setState({ stack }))
-  }
-
-  deleteStack (id) {
-    // actually delete the stack -- use data.?
-    data.deleteStack(id)
-      // .then(change state so that this component knows that it deleted the stack)
-      .then(() => this.setState({ deleted: true }))
+      .then(stack => this.setState({ stack, isLoading: false }))
   }
 
   updateStackTitle (newTitle) {
@@ -49,8 +42,8 @@ class StackPageContainer extends React.Component {
       return <Redirect to='/' />
     }
     return <StackPage stack={this.state.stack}
-      updateStackTitle={this.updateStackTitle}
-      onDeleteStack={(id) => this.deleteStack(id)} />
+      isLoading={this.state.isLoading}
+      updateStackTitle={this.updateStackTitle} />
   }
 }
 

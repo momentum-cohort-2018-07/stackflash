@@ -1,22 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Delete } from 'bloomer'
 import { Link } from 'react-router-dom'
-import { Icon } from 'bloomer'
 
-const FlashCardMini = (props) =>
-  <div className='FlashCardMini'>
-    <div className='cardFront'>
-      <div className='miniCard'>
-        <div className='cardDeleteButtonDiv'><button className='cardDeleteButton'>&#10006;</button></div>
-        <div className='cardEditButtonDiv'>
-          <Link to={`/cards/${props.card.id}`}>
-            <Icon className='far fa-edit' />
-          </Link>
-        </div>
-        {props.card.front}
+import { truncateString } from '../util'
+
+const FlashCardMini = (props) => {
+  const { card } = props
+  return (
+    <div className='FlashCardMini'>
+      <div className='FlashCardMini__delete'>
+        <Delete />
       </div>
+      <Link to={`/cards/${card.id}`}>
+        {truncateString(props.card.front, 180, 'right', '...', 'true')}
+      </Link>
+
     </div>
-  </div>
+  )
+}
 
 FlashCardMini.propTypes = {
   cardFront: PropTypes.string

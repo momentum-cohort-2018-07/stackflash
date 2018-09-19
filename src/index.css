@@ -1,4 +1,4 @@
-:root {  
+:root {
   --color-light: hsl(0, 0%, 96%);
   --color-dark: hsl(0, 0%, 21%);
   --color-primary: hsl(171, 100%, 41%);
@@ -32,7 +32,7 @@ a.active {
 }
 
 .main {
-  flex: 0 1 100%;  
+  flex: 0 1 100%;
 }
 
 .board {
@@ -43,14 +43,8 @@ a.active {
   padding: 1rem;
 }
 
-.BigFlashCard {
-  border: 1px solid black;
-  border-radius: 10px;
-  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.75);
-  padding: 1rem 2rem;
-  margin: 2rem auto;
-  width: 75%;
-  background-color: white;
+.attribution {
+  margin-top: 4rem;
 }
 
 .Stacks {
@@ -71,20 +65,49 @@ a.active {
   text-align: center;
 }
 
-.Stack__fg {
+.Stack__fg, .Stack__fg--no-hover {
   width: 100%;
   height: 300px;
   border: 1px solid black;
   border-radius: 10px;
   box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.25);
   background-color: white;
-  z-index: 999;
+  z-index: 1;
   position: absolute;
 }
 
+.Stack__fg:hover {
+  background-color: var(--color-link);
+  color: var(--color-light);
+}
+
+.Stack__fg:hover a {
+  color: var(--color-light);
+}
+
 .Stack__content {
+  text-align: center;
   z-index: 999;
 }
+
+/*
+ * This code exists to vertically center text in the cards.
+ */
+
+.Stack__content {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.Stack__content .vcenter {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+}
+
+/* end vertical centering */
 
 .Stack__bg {
   width: 100%;
@@ -99,23 +122,77 @@ a.active {
   z-index: 0;
 }
 
-.Stack__fg:hover {
+.Stack__addStack {
+  font-size: 400%;
+  font-weight: bold;
+}
+
+.Stack__new-stack-name {
+  font-size: 1.25rem;
+  max-width: 150px;
+}
+
+.Stack__delete {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.Stack__content:hover .Stack__delete {
+  display: inline-block;
+}
+
+.FlashCardMini {
+  position: relative;
+  height: 300px;
+  width: 180px;
+  margin: 15px 7px;
+  border: 1px solid black;
+  border-radius: 8px;
+  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.5);
+  background-color: white;
+  padding: 30px 10px;
+  text-align: center;
+}
+
+.FlashCardMini:hover {
   cursor: pointer;
   background-color: var(--color-link);
   color: var(--color-light);
 }
 
-.Stack__content {
-  text-align: center;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+.FlashCardMini:hover .FlashCardMini__delete {
+  display: block;
+  color: var(--color-light);
+  background-color: var(--color-link);
 }
 
-.Stack__addStack {
-  font-size: 400%;
-  font-weight: bold;
+.FlashCardMini__delete {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
+
+
+
+
+/* HERE BE DRAGONS */
+
+.BigFlashCard {
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.75);
+  padding: 1rem 2rem;
+  margin: 2rem auto;
+  width: 75%;
+  background-color: white;
+}
+
+
+
+
 
 .stackNav {
   display: flex;
@@ -140,30 +217,6 @@ a.active {
   padding: .75rem;
 }
 
-.miniCard {
-  height: 300px;
-  width: 180px;
-  margin: 15px 7px;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 8px;
-  box-shadow: 10px 9px 5px -8px rgba(0,0,0,0.5);
-  background-color: white;
-  padding: 10px;
-  text-align: center;    
-}
-
-.miniCard:hover {
-  cursor: pointer;
-  background-color: var(--color-link);
-  color: var(--color-light);
-}
-
-.minicard:hover .cardDeleteButton {
-  color: var(--color-light);
-  background-color: var(--color-link);
-}
-
 .Card__content {
   font-size: .75rem;
   line-height: .75rem;
@@ -174,7 +227,7 @@ a.active {
 
 .edit-runDiv {
   text-align: right;
-} 
+}
 
 .editTitleButton, .cancelTitleEditButton {
   border: none;
@@ -191,23 +244,6 @@ a.active {
 
 .cancelTitleEditButton:hover {
   color:hsl(348, 100%, 61%);
-}
-
-.cardDeleteandEditButton {
-  float: right;
-}
-
-.cardDeleteButton{
-  margin-bottom: 4px;
-  border: none;
-  color:lightgray;
-  font-size: 1rem;
-  background-color: transparent;
-}
-
-.cardDeleteButton:hover {
-  color:hsl(348, 100%, 61%);
-  font-size: 1rem;
 }
 
 .Card__addCardSymbol {
@@ -237,7 +273,7 @@ a.active {
 }
 
 @media screen and (max-width: 699px) {
-    
+
   .edit-runDiv {
     display: block;
     margin: 0 auto;
@@ -245,7 +281,7 @@ a.active {
   }
 }
 
- 
+
 .card-outline {
   border: 1px solid black;
   max-width: 40%;
@@ -317,14 +353,8 @@ a.active {
   font-size: 2.4rem;
 }
 
-.Stack__newStack {
-  background-color: var(--color-info)
-}
-.Stack__new-stack-name {
-  font-size: 15px;
-  font-weight: bolder;
-  max-width: 150px;
-}
+
+
 .save-new-stack {
   margin-top: 15px;
 }
@@ -365,13 +395,17 @@ a.active {
     justify-content: space-between;
     margin: 0 0 20px 0;
   }
+
+  .attribution {
+    margin-top: 0;
+  }
 }
 
 @media only screen and (max-width: 600px) {
   .sidebar {
     display: flex;
     flex-direction: column;
-    align-content: flex-start; 
+    align-content: flex-start;
   }
   .sidebar-user-info {
     margin: 0 0 10px 0;
@@ -382,4 +416,3 @@ a.active {
     flex-direction: column;
   }
 }
-
